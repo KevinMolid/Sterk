@@ -13,7 +13,7 @@ function Workouts() {
           <br />
           <span className='bold'>Barbell row</span> 5x
         </p>
-        <button className='btn-primary'>Start workout <i className="btn-icon fa-solid fa-chevron-right"></i></button>
+        <button className='btn btn-primary'>Start workout <i className="btn-icon fa-solid fa-chevron-right"></i></button>
         
         <h3>Stronglifts 5x5 B</h3>
         <p>
@@ -23,7 +23,7 @@ function Workouts() {
           <br />
           <span className='bold'>Barbell row</span> 5x
         </p>
-        <button className='btn-primary'>Start workout <i className="btn-icon fa-solid fa-chevron-right"></i></button>
+        <button className='btn btn-primary'>Start workout <i className="btn-icon fa-solid fa-chevron-right"></i></button>
       </main>
     )
   }

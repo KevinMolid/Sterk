@@ -27,7 +27,13 @@ function App() {
 
 // Placeholder Home component
 function Home() {
-  return <div><h2>Welcome to Sterk Workout Tracker!</h2></div>
+  return (
+    <main>
+      <h2>Welcome to Sterk!</h2>
+      <a href="/workouts"><button className='btn btn-primary'>Find a workout <i className="btn-icon fa-solid fa-chevron-right"></i></button></a>
+      <a href="/workouts"><button className='btn btn-secondary'>Find an exercise <i className="btn-icon fa-solid fa-chevron-right"></i></button></a>
+    </main>
+  )
 }
 
 export default App

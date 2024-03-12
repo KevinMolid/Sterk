@@ -2,10 +2,10 @@ import React from 'react'
 
 function Exercises() {
     return (
-      <div>
+      <main>
         <h2>Exercises</h2>
         <h3>Bench press</h3>
-      </div>
+      </main>
     )
   }
   
