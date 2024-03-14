@@ -1,5 +1,5 @@
 import React from 'react'
-import sterkLogo from '../assets/logo.png'
+import sterkLogo from '/public/assets/logo.png'
 
 function Header() {
     return (

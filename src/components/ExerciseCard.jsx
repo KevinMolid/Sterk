@@ -21,7 +21,7 @@ function ExerciseCard(props) {
             <p><span className='bold white'>Category:</span> {exercise.category}</p>
             <div className='exercise--imgs'>
                 {exercise.img && <img className='exercise--img' src={exercise.img}/>}
-                {exercise.bodyParts && <img className='exercise--illustration' src='src\assets\BodyIllustration.png'/>}
+                {exercise.bodyParts && <img className='exercise--illustration' src='/assets/BodyIllustration.png'/>}
             </div>
             <p><span className='bold white'>Muscles:</span> {exercise.bodyParts.join(', ')}</p>
         </div>
