@@ -36,8 +36,7 @@
   text-align: center;
   border-radius: 5px;
   padding-inline: 1em;
-  background: rgb(82,159,50);
-  background: linear-gradient(0deg, rgba(82,159,50,1) 0%, rgba(134,187,53,1) 100%);
+  background: #000;
 }
 
 .signIn--logo-wrapper {
@@ -53,7 +52,7 @@
 }
 
 .signIn--logo-txt {
-  color: #111;
+  color: #fff;
   font-size: 3em;
   font-weight: 700;
   line-height: 1;
@@ -65,7 +64,7 @@
   background: #111;
   padding: 1em;
   margin-top: 1em;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .signIn--h1 {
