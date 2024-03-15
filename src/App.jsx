@@ -32,7 +32,11 @@ const auth = getAuth(app)
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false)
 
-  function authCreateAccountWithEmail() {
+  function authCreateAccountWithEmail(event) {
+    event.preventDefault()
+    const email = document.getElementById('email').value
+    const password = document.getElementById('pw').value
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up 
@@ -44,6 +48,43 @@ function App() {
         const errorMessage = error.message
         // ..
       })
+  }
+
+  // Sign in component
+  function SignIn() {
+    return (
+      <div className="signIn">
+        <div className='signIn--logo-wrapper'>
+          <img className='signIn--logo-img' src={sterkLogo} alt="Sterk logo" />
+          <span className='signIn--logo-txt'>Sterk</span>
+        </div>
+        <div className='signIn--card'>
+          <h2 className="signIn--h2">LOG IN</h2>
+          <button className="btn btn-secondary margin-bottom-2">Sign up with Google</button>
+          <form>
+            <input 
+              className="signIn--input margin-bottom-1" 
+              type="email" 
+              name="email" 
+              id="email" 
+              placeholder="Email"
+              required
+              />
+            <input 
+              className="signIn--input" 
+              type="password" 
+              name="pw" 
+              id="pw" 
+              placeholder="Password"
+              required
+              />
+            <p className='signIn--p'>Forgot password?</p>
+            <button className="btn btn-primary" onClick={authCreateAccountWithEmail}>Log in</button>
+            <button className="btn btn-secondary">Sign up</button>
+          </form>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -65,27 +106,6 @@ function App() {
         }
       </div>
     </Router>
-  )
-}
-
-// Sign in component
-function SignIn() {
-  return (
-    <div className="signIn">
-      <div className='signIn--logo-wrapper'>
-        <img className='signIn--logo-img' src={sterkLogo} alt="Sterk logo" />
-        <span className='signIn--logo-txt white'>Sterk</span>
-      </div>
-      <h2 className="signIn--h2">LOG IN</h2>
-      <button className="btn btn-secondary margin-bottom-2">Sign up with Google</button>
-      <div>
-        <input className="signIn--input margin-bottom-1" type="text" name="username" id="username" placeholder="Email"/>
-        <input className="signIn--input" type="text" name="pw" id="pw" placeholder="Password"/>
-      </div>
-      <p className='signIn--p'>Forgot password?</p>
-      <button className="btn btn-primary">Log in</button>
-      <button className="btn btn-secondary">Sign up</button>
-    </div>
   )
 }
 

@@ -24,13 +24,20 @@
 
 /* SignIn */
 .signIn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100svh;
+  width: 100svw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100svh;
   text-align: center;
   border-radius: 5px;
-  padding: 1em;
+  padding-inline: 1em;
+  background: rgb(99,213,60);
+  background: linear-gradient(270deg, rgba(99,213,60,1) 0%, rgba(192,244,55,1) 100%);
 }
 
 .signIn--logo-wrapper {
@@ -38,6 +45,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .signIn--logo-img {
@@ -45,9 +53,19 @@
 }
 
 .signIn--logo-txt {
+  color: #111;
   font-size: 3em;
   font-weight: 700;
   line-height: 1;
+}
+
+.signIn--card {
+  max-width: 500px;
+  margin-inline: auto;
+  background: #111;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 10px;
 }
 
 .signIn--h1 {
@@ -57,22 +75,13 @@
 .signIn--h2 {
   font-size: 1.5rem;
   font-weight: 400;
+  margin-top: 0;
 }
 
 .signIn--p {
+  color: #999;
   text-align: left;
   margin: 0.5em 0 2em;
-}
-
-.signIn--box {
-  background: #222;
-  border-radius: 4px;
-  user-select: none;
-  cursor: pointer;
-}
-
-.signIn--box:hover {
-  background: #111;
 }
 
 .signIn--input {
@@ -82,8 +91,8 @@
   height: 32px;
   border: none;
   background: none;
-  border-bottom: 1px solid #999;
   outline: none;
+  border-bottom: 1px solid #fff;
 }
 
 /* Header */
@@ -226,7 +235,15 @@ p {
   color: #bbb;
 }
 
+/* Inputs */
+input {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 /* Buttons */
+button {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
 
 .btn {
   display: flex;
@@ -244,7 +261,7 @@ p {
 }
 
 .btn-primary {
-  color: #333;
+  color: #111;
   background: rgb(99,213,60);
   background: linear-gradient(270deg, rgba(99,213,60,1) 0%, rgba(192,244,55,1) 100%);
   
