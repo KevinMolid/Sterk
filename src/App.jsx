@@ -60,7 +60,7 @@ function App() {
         </div>
         <div className='signIn--card'>
           <h2 className="signIn--h2">LOG IN</h2>
-          <button className="btn btn-secondary margin-bottom-2">Sign up with Google</button>
+          <button className="btn btn-secondary margin-bottom-2">Log in with Google</button>
           <form>
             <input 
               className="signIn--input margin-bottom-1" 
@@ -79,8 +79,8 @@ function App() {
               required
               />
             <p className='signIn--p'>Forgot password?</p>
-            <button className="btn btn-primary" onClick={authCreateAccountWithEmail}>Log in</button>
-            <button className="btn btn-secondary">Sign up</button>
+            <button className="btn btn-primary margin-bottom-1" onClick={authCreateAccountWithEmail}>Log in</button>
+            <button className="btn btn-secondary margin-bottom-2">Sign up</button>
           </form>
         </div>
       </div>
