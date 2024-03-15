@@ -36,8 +36,8 @@
   text-align: center;
   border-radius: 5px;
   padding-inline: 1em;
-  background: rgb(99,213,60);
-  background: linear-gradient(270deg, rgba(99,213,60,1) 0%, rgba(192,244,55,1) 100%);
+  background: rgb(82,159,50);
+  background: linear-gradient(0deg, rgba(82,159,50,1) 0%, rgba(134,187,53,1) 100%);
 }
 
 .signIn--logo-wrapper {
@@ -264,7 +264,6 @@ button {
   color: #111;
   background: rgb(99,213,60);
   background: linear-gradient(270deg, rgba(99,213,60,1) 0%, rgba(192,244,55,1) 100%);
-  
 }
 
 .btn-secondary {
