@@ -12,7 +12,10 @@ const exercisesHTML = exercises.map(exercise => {
 function Exercises() {
     return (
       <main>
-        <h2>Exercises</h2>
+        <div className='exercises--heading-wrapper'>
+          <h2>Exercises</h2>
+          <button className='btn btn-primary btn-small'><i class="fa-solid fa-plus"></i></button>
+        </div>
         {exercisesHTML}
       </main>
     )

@@ -191,6 +191,12 @@ main {
 }
 
 /* Exercises */
+.exercises--heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .exercise--title-wrapper {
   border-bottom: 1px solid #333;
   cursor: pointer;
