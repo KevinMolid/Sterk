@@ -1,5 +1,5 @@
 import './App.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Navbar from './components/NavBar'
 import Exercises from './pages/Exercises'
@@ -31,19 +31,17 @@ const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const auth = getAuth(app)
 
-
-
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      setLoggedIn(true)
-    } else {
-      setLoggedIn(false)
-    }
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user)
+      setLoading(false)
+    })
+    return () => unsubscribe()
+  }, [])
 
   // sign up
   function authCreateAccountWithEmail(event) {
@@ -54,7 +52,7 @@ function App() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
-        setLoggedIn(true)
+        setUser(user)
       })
       .catch((error) => {
         console.error(error)
@@ -71,7 +69,7 @@ function App() {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user
-        setLoggedIn(true)
+        setUser(user)
       })
       .catch((error) => {
         console.error(error)
@@ -81,10 +79,10 @@ function App() {
   function authSignOut() {
     const auth = getAuth();
     signOut(auth).then(() => {
-      setLoggedIn(false)
+      setUser(null)
     }).catch((error) => {
       console.error(error)
-    });
+    })
   }
 
   // Sign in component
@@ -124,11 +122,15 @@ function App() {
     )
   }
 
+  if (loading) {
+    return <div className='loading'>Loading...</div>; // Show loading screen while auth state is loading
+  }
+
   return (
     <Router>
       <div className="app">
-        {!loggedIn && <SignIn/>}
-        {loggedIn && 
+        {!user && <SignIn/>}
+        {user && 
         <>
           <Header signOut={authSignOut} />
           <Routes>

@@ -94,6 +94,16 @@
   border-bottom: 1px solid #fff;
 }
 
+/* loading */
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* Header */
 .header {
   position: fixed;
