@@ -11,7 +11,11 @@ import sterkLogo from '/src/assets/logoBlack.png'
 // Firebase
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged  } from "firebase/auth";
+import { getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut,
+  onAuthStateChanged } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -32,6 +36,16 @@ const auth = getAuth(app)
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false)
 
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+  });
+
+  // sign up
   function authCreateAccountWithEmail(event) {
     event.preventDefault()
     const email = document.getElementById('email').value
@@ -39,15 +53,38 @@ function App() {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed up 
         const user = userCredential.user
-        // ...
+        setLoggedIn(true)
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        // ..
+        console.error(error)
       })
+  }
+
+  // Sign in
+  function authSignInWithEmail(event) {
+    event.preventDefault()
+    const email = document.getElementById('email').value
+    const password = document.getElementById('pw').value
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user
+        setLoggedIn(true)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  function authSignOut() {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setLoggedIn(false)
+    }).catch((error) => {
+      console.error(error)
+    });
   }
 
   // Sign in component
@@ -79,8 +116,8 @@ function App() {
               required
               />
             <p className='signIn--p'>Forgot password?</p>
-            <button className="btn btn-primary margin-bottom-1" onClick={authCreateAccountWithEmail}>Log in</button>
-            <button className="btn btn-secondary margin-bottom-2">Sign up</button>
+            <button className="btn btn-primary margin-bottom-1" onClick={authSignInWithEmail}>Log in</button>
+            <button className="btn btn-secondary margin-bottom-2" onClick={authCreateAccountWithEmail}>Sign up</button>
           </form>
         </div>
       </div>
@@ -93,7 +130,7 @@ function App() {
         {!loggedIn && <SignIn/>}
         {loggedIn && 
         <>
-          <Header />
+          <Header signOut={authSignOut} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/exercises" element={<Exercises />} />
