@@ -207,6 +207,128 @@ main {
   margin: 0.2em 0;
 }
 
+.new-exercise-modal {
+  display: flex;
+  flex-direction: column;
+  color: #fafafa;
+  background-color: #222;
+  padding: 2em 1em;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.new-exercise-modal h3 {
+  line-height: 1;
+  margin: 0 0 1em;
+}
+
+.new-exercise-modal label {
+  display: block;
+}
+
+.new-exercise-modal input {
+  color: #fafafa;
+  background: #111;
+  border: none;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.new-exercise-modal select {
+  width: 100%;
+  color: #fafafa;
+  background: #111;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* Fieldset */
+.new-exercise-modal details {
+  width: 100%;
+  border-radius: 3px;
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.new-exercise-modal details form {
+  color: #fafafa;
+  background: #111;
+  padding: 0.5em;
+}
+
+.new-exercise-modal details summary {
+  background: none;
+}
+
+.new-exercise-modal details summary::marker {
+  display: none;
+  font-size: 0;
+}
+
+.new-exercise-modal details summary::-webkit-details-marker {
+  display: none;
+  font-size: 0;
+}
+
+.new-exercise-modal details summary::after {
+  content: "\25BC";
+  display: inline-block;
+  font-size: 0.6rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin-left: 0.4rem;
+  position: relative;
+  transition: transform 0.25s;
+}
+
+.new-exercise-modal details[open] summary::after {
+  top: -0.15rem;
+  transform: rotate(180deg);
+}
+
+.new-exercise-modal fieldset {
+  border: 0;
+  padding: 0;
+}
+
+.new-exercise-modal fieldset legend {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.new-exercise-modal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.new-exercise-modal ul li {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  border-radius: 3px;
+  margin: 0;
+  padding: 4px 2px;
+  cursor: pointer;
+}
+
+.new-exercise-modal ul li:hover {
+  background: #222;
+}
+
+.new-exercise-modal ul li label {
+  display: inline-block;
+  width: 100%;
+}
+/* */
+
 .exercise--caret {
   color: #999999;
   margin-left: 0.5em;
@@ -255,6 +377,7 @@ p {
 
 /* Inputs */
 input {
+  width: 100%;
   padding-inline: 0.4em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
