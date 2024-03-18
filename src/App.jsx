@@ -116,7 +116,9 @@ function App() {
         <div className='signIn--card'>
           <h2 className="signIn--h2">SIGN IN</h2>
           <form>
-          <button className="btn btn-secondary margin-bottom-2" onClick={authSignInWithGoogle}>Sign in with Google</button>
+          <button className="btn btn-provider margin-bottom-2" onClick={authSignInWithGoogle}>
+            <img className="btn-img" src="public\assets\googleLogo.png"/>
+            Sign in with Google</button>
             <input 
               className="signIn--input margin-bottom-1" 
               type="email" 

@@ -279,6 +279,11 @@ button {
   margin-bottom: 0.5em;
 }
 
+.btn-img {
+  width: 35px;
+  margin-left: -5px;
+}
+
 .btn-primary {
   color: #111;
   background: rgb(99,213,60);
@@ -293,6 +298,17 @@ button {
 .btn-tertiary {
   color: #111;
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-provider {
+  color: #fafafa;
+  background-color: #333;
+}
+
+.btn-secondary:hover,
+.btn-provider:hover
+ {
+  background-color: #393939;
 }
 
 .btn-tertiary:hover {
