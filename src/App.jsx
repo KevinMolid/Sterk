@@ -15,7 +15,9 @@ import { getAuth,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut,
-  onAuthStateChanged } from "firebase/auth";
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -30,6 +32,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const auth = getAuth(app)
+const provider = new GoogleAuthProvider()
 
 function App() {
   const [user, setUser] = useState(null)
@@ -59,7 +62,7 @@ function App() {
       })
   }
 
-  // Sign in
+  // Sign in with email
   function authSignInWithEmail(event) {
     event.preventDefault()
     const email = document.getElementById('email').value
@@ -75,6 +78,23 @@ function App() {
         console.error(error)
       })
   }
+
+    // Sign in with google
+    function authSignInWithGoogle(event) {
+      event.preventDefault()
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        setUser(user)
+      }).catch((error) => {
+        console.log(error)
+      });
+    }
 
   function authSignOut() {
     const auth = getAuth();
@@ -94,9 +114,9 @@ function App() {
           <span className='signIn--logo-txt'>Sterk</span>
         </div>
         <div className='signIn--card'>
-          <h2 className="signIn--h2">LOG IN</h2>
-          <button className="btn btn-secondary margin-bottom-2">Log in with Google</button>
+          <h2 className="signIn--h2">SIGN IN</h2>
           <form>
+          <button className="btn btn-secondary margin-bottom-2" onClick={authSignInWithGoogle}>Sign in with Google</button>
             <input 
               className="signIn--input margin-bottom-1" 
               type="email" 
@@ -114,8 +134,8 @@ function App() {
               required
               />
             <p className='signIn--p'>Forgot password?</p>
-            <button className="btn btn-primary margin-bottom-1" onClick={authSignInWithEmail}>Log in</button>
-            <button className="btn btn-secondary margin-bottom-2" onClick={authCreateAccountWithEmail}>Sign up</button>
+            <button className="btn btn-primary margin-bottom-1" onClick={authSignInWithEmail}>Sign in</button>
+            <button className="btn btn-secondary margin-bottom-2" onClick={authCreateAccountWithEmail}>Create account</button>
           </form>
         </div>
       </div>

@@ -255,6 +255,7 @@ p {
 
 /* Inputs */
 input {
+  padding-inline: 0.4em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
