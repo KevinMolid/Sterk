@@ -8,7 +8,7 @@ import Progress from './pages/Progress'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import sterkLogo from '/src/assets/logoBlack.png'
 
-// Firebase
+// Firebase Auth
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 import { getAuth, 
@@ -17,7 +17,12 @@ import { getAuth,
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithPopup } from "firebase/auth";
+  signInWithPopup } from "firebase/auth"
+
+// Firebasee Firestore
+import { getFirestore, 
+  collection, 
+  addDoc } from "firebase/firestore"
 
 
 const firebaseConfig = {
@@ -33,6 +38,7 @@ const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
+const db = getFirestore(app)
 
 function App() {
   const [user, setUser] = useState(null)

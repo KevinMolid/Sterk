@@ -23,8 +23,8 @@ function Exercises() {
         <h2>Exercises</h2>
         <button onClick={toggleModal}
           className='btn btn-primary btn-small'>
-          {modalExpanded && <i class="fa-solid fa-x"></i>}
-          {!modalExpanded && <i class="fa-solid fa-plus"></i>}</button>
+          {modalExpanded && <i className="fa-solid fa-x"></i>}
+          {!modalExpanded && <i className="fa-solid fa-plus"></i>}</button>
       </div>
       {modalExpanded && <AddExerciseModal />}
       {exercisesHTML}
