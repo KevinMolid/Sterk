@@ -20,10 +20,10 @@ function ExerciseCard(props) {
         <div>
             <p><span className='bold white'>Category:</span> {exercise.category}</p>
             <div className='exercise--imgs'>
-                {exercise.img && <img className='exercise--img' src={exercise.img}/>}
-                {exercise.bodyParts && <img className='exercise--illustration' src='/assets/BodyIllustration.png'/>}
+                {exercise.primaryMuscles && <img className='exercise--illustration' src='/assets/BodyIllustration.png'/>}
             </div>
-            <p><span className='bold white'>Muscles:</span> {exercise.bodyParts.join(', ')}</p>
+            <p><span className='bold white'>Primary muscles:</span> {exercise.primaryMuscles.join(', ')}</p>
+            <p><span className='bold white'>Secondary muscles:</span> {exercise.secondaryMuscles.join(', ')}</p>
         </div>
         }
       </>

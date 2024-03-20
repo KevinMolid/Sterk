@@ -19,7 +19,7 @@ import { getAuth,
   GoogleAuthProvider,
   signInWithPopup } from "firebase/auth"
 
-// Firebasee Firestore
+// Firebase Firestore
 import { getFirestore, 
   collection, 
   addDoc } from "firebase/firestore"
