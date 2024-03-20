@@ -82,10 +82,10 @@ function AddExerciseModal(props) {
         root: root,
         type: type
       })
-      props.fetchAndRenderExercises()
     } catch (e) {
       console.error("Error adding document: ", e)
     }
+    props.toggleModal()
   }
 
   return (

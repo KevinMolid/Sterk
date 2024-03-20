@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ExerciseCard from '../components/ExerciseCard.jsx'
 import AddExerciseModal from '../components/AddExerciseModal.jsx'
 
@@ -20,14 +20,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
+// Exercises component
 function Exercises() {
   const [modalExpanded, setModalExpanded] = useState(false)
-  const [exercisesHTML, setExercisesHTML] = useState([])
+  const [exercises, setExercises] = useState([])
 
   function toggleModal() {
     setModalExpanded(prevState => !prevState)
   }
 
+  useEffect(() => {
+    const fetchExercises = async () => {
+      const querySnapshot = await getDocs(collection(db, "exercises"))
+      const exercisesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      setExercises(exercisesList)
+    }
+    fetchExercises()
+  })
+
+  /*
   async function fetchAndRenderExercises() {
     setExercisesHTML([])
     const querySnapshot = await getDocs(collection(db, "exercises"))
@@ -36,7 +47,13 @@ function Exercises() {
       console.log(exercise.data().name)
       setExercisesHTML(prevExercises => [...prevExercises, <ExerciseCard key={exercise.id} exercise={exercise.data()} />])
     })
-  }
+  }*/
+
+  const exercisesHTML = exercises.map(exercise => {
+    return (
+      <ExerciseCard key={exercise.id} exercise={exercise} />
+    )
+  })
 
   return (
     <main>
@@ -47,9 +64,8 @@ function Exercises() {
           {modalExpanded && <i className="fa-solid fa-x"></i>}
           {!modalExpanded && <i className="fa-solid fa-plus"></i>}</button>
       </div>
-      {modalExpanded && <AddExerciseModal fetchAndRenderExercises={fetchAndRenderExercises} />}
+      {modalExpanded && <AddExerciseModal toggleModal={toggleModal} />}
       {exercisesHTML}
-      <button className='btn btn-primary' onClick={fetchAndRenderExercises}>Render</button>
     </main>
   )
 }
