@@ -29,6 +29,7 @@ function Exercises() {
   }
 
   async function fetchAndRenderExercises() {
+    setExercisesHTML([])
     const querySnapshot = await getDocs(collection(db, "exercises"))
     querySnapshot.forEach((exercise) => {
       // doc.data() is never undefined for query doc snapshots
@@ -46,7 +47,7 @@ function Exercises() {
           {modalExpanded && <i className="fa-solid fa-x"></i>}
           {!modalExpanded && <i className="fa-solid fa-plus"></i>}</button>
       </div>
-      {modalExpanded && <AddExerciseModal />}
+      {modalExpanded && <AddExerciseModal fetchAndRenderExercises={fetchAndRenderExercises} />}
       {exercisesHTML}
       <button className='btn btn-primary' onClick={fetchAndRenderExercises}>Render</button>
     </main>

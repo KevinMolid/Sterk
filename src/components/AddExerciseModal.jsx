@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { initializeApp } from "firebase/app"
 import { getFirestore, collection, addDoc } from "firebase/firestore"
-import exercises from '../data/exercises'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAgCPUoe9DyIhBeHrHwWjAsSgVqdt2qZRY",
@@ -16,7 +15,7 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 // Modal
-function AddExerciseModal() {
+function AddExerciseModal(props) {
   // State hooks for input fields
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
@@ -83,7 +82,7 @@ function AddExerciseModal() {
         root: root,
         type: type
       })
-      console.log("Document written with ID: ", docRef.id)
+      props.fetchAndRenderExercises()
     } catch (e) {
       console.error("Error adding document: ", e)
     }
