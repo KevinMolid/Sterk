@@ -35,19 +35,9 @@ function Exercises() {
       const exercisesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
       setExercises(exercisesList)
     }
+    console.log('running')
     fetchExercises()
-  })
-
-  /*
-  async function fetchAndRenderExercises() {
-    setExercisesHTML([])
-    const querySnapshot = await getDocs(collection(db, "exercises"))
-    querySnapshot.forEach((exercise) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(exercise.data().name)
-      setExercisesHTML(prevExercises => [...prevExercises, <ExerciseCard key={exercise.id} exercise={exercise.data()} />])
-    })
-  }*/
+  }, [])
 
   const exercisesHTML = exercises.map(exercise => {
     return (
