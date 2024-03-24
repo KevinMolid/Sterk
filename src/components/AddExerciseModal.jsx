@@ -2,17 +2,7 @@ import React, { useState } from 'react'
 import { initializeApp } from "firebase/app"
 import { getFirestore, collection, addDoc } from "firebase/firestore"
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAgCPUoe9DyIhBeHrHwWjAsSgVqdt2qZRY",
-  authDomain: "sterk-1cc56.firebaseapp.com",
-  projectId: "sterk-1cc56",
-  storageBucket: "sterk-1cc56.appspot.com",
-  messagingSenderId: "1053630322021",
-  appId: "1:1053630322021:web:5779880d99cfd1d230bd8c"
-}
-
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
+import { db } from '../config.jsx'
 
 // Modal
 function AddExerciseModal(props) {
@@ -74,7 +64,7 @@ function AddExerciseModal(props) {
     event.preventDefault()
     console.log('Submitting form with:', { name, category, type, root, primaryMuscles, secondaryMuscles })
     try {
-      const docRef = await addDoc(collection(db, "exercises"), {
+      await addDoc(collection(db, "exercises"), {
         name: name,
         category: category,
         primaryMuscles: primaryMuscles,
@@ -82,6 +72,7 @@ function AddExerciseModal(props) {
         root: root,
         type: type
       })
+      props.handleExerciseAdded()
     } catch (e) {
       console.error("Error adding document: ", e)
     }

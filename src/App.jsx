@@ -8,41 +8,26 @@ import Progress from './pages/Progress'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import sterkLogo from '/src/assets/logoBlack.png'
 
-// Firebase Auth
-import { initializeApp } from "firebase/app"
-import { getAnalytics } from "firebase/analytics"
-import { getAuth, 
+import { getAuth,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut,
   onAuthStateChanged,
-  GoogleAuthProvider,
   signInWithPopup } from "firebase/auth"
 
-// Firebase Firestore
-import { getFirestore, 
-  collection, 
-  addDoc } from "firebase/firestore"
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAgCPUoe9DyIhBeHrHwWjAsSgVqdt2qZRY",
-  authDomain: "sterk-1cc56.firebaseapp.com",
-  projectId: "sterk-1cc56",
-  storageBucket: "sterk-1cc56.appspot.com",
-  messagingSenderId: "1053630322021",
-  appId: "1:1053630322021:web:5779880d99cfd1d230bd8c"
-}
-
-const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
-const auth = getAuth(app)
-const provider = new GoogleAuthProvider()
-const db = getFirestore(app)
+import { auth, provider, db } from './config.jsx'
 
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  // State to trigger refresh of exercise list
+  const [refreshExercises, setRefreshExercises] = useState(false)
+
+  // Callback function to trigger refresh
+  const handleExerciseAdded = () => {
+    setRefreshExercises(prev => !prev)
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -123,7 +108,7 @@ function App() {
           <h2 className="signIn--h2">SIGN IN</h2>
           <form>
           <button className="btn btn-provider margin-bottom-2" onClick={authSignInWithGoogle}>
-            <img className="btn-img" src="public\assets\googleLogo.png"/>
+            <img className="btn-img" src="/assets/googleLogo.png"/>
             Sign in with Google</button>
             <input 
               className="signIn--input margin-bottom-1" 
@@ -163,7 +148,9 @@ function App() {
           <Header signOut={authSignOut} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/exercises" element={<Exercises />} />
+            <Route path="/exercises" element={<Exercises 
+              refreshFlag={refreshExercises}
+              handleExerciseAdded={handleExerciseAdded}/>} />
             <Route path="/workouts" element={<Workouts />} />
             <Route path="/progress" element={<Progress />} />
             {/* Add more routes as needed */}

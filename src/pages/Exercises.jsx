@@ -7,21 +7,11 @@ import { initializeApp } from "firebase/app"
 // Firebase Firestore
 import { getFirestore, getDocs, 
   collection } from "firebase/firestore"
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAgCPUoe9DyIhBeHrHwWjAsSgVqdt2qZRY",
-  authDomain: "sterk-1cc56.firebaseapp.com",
-  projectId: "sterk-1cc56",
-  storageBucket: "sterk-1cc56.appspot.com",
-  messagingSenderId: "1053630322021",
-  appId: "1:1053630322021:web:5779880d99cfd1d230bd8c"
-}
-
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
+  
+import { db } from '../config.jsx'
 
 // Exercises component
-function Exercises() {
+function Exercises({ refreshFlag, handleExerciseAdded }) {
   const [modalExpanded, setModalExpanded] = useState(false)
   const [exercises, setExercises] = useState([])
 
@@ -33,11 +23,19 @@ function Exercises() {
     const fetchExercises = async () => {
       const querySnapshot = await getDocs(collection(db, "exercises"))
       const exercisesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      setExercises(exercisesList)
+      const alphabeticalExercisesList = exercisesList.sort(function(a, b) {
+        if (a.name < b.name) {
+          return -1
+        } else if (a.name > b.name) {
+          return 1
+        } else {
+          return 0
+        }
+      })
+      setExercises(alphabeticalExercisesList)
     }
-    console.log('running')
     fetchExercises()
-  }, [])
+  }, [refreshFlag]) // re-fetches when flagged
 
   const exercisesHTML = exercises.map(exercise => {
     return (
@@ -54,7 +52,7 @@ function Exercises() {
           {modalExpanded && <i className="fa-solid fa-x"></i>}
           {!modalExpanded && <i className="fa-solid fa-plus"></i>}</button>
       </div>
-      {modalExpanded && <AddExerciseModal toggleModal={toggleModal} />}
+      {modalExpanded && <AddExerciseModal toggleModal={toggleModal} handleExerciseAdded={handleExerciseAdded}/>}
       {exercisesHTML}
     </main>
   )
