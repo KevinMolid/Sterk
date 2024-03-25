@@ -53,6 +53,12 @@ function Exercises({ refreshFlag, handleExerciseAdded }) {
           {!modalExpanded && <i className="fa-solid fa-plus"></i>}</button>
       </div>
       {modalExpanded && <AddExerciseModal toggleModal={toggleModal} handleExerciseAdded={handleExerciseAdded}/>}
+      <div className="exercises--input-wrapper">
+      <span className="exercises--input-icon material-symbols-outlined">
+        search
+      </span>
+        <input className="exercises--input" type="text" placeholder='Search'/>
+      </div>
       {exercisesHTML}
     </main>
   )

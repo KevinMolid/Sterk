@@ -11,10 +11,14 @@ function ExerciseCard(props) {
     return (
     <>
         <div className='exercise--title-wrapper' onClick={toggleExpanded}>
-            <h3 className='exercise--title'>{exercise.name} 
-                {!expanded && <i className="exercise--caret fa-solid fa-caret-down"></i>}
-                {expanded && <i className="exercise--caret fa-solid fa-caret-up"></i>}
-            </h3>
+            <img class ="exercise--title-img" src="public/assets/exercises/bp.webp" alt="" />
+            <div>
+                <h3 className='exercise--title'>{exercise.name} 
+                    {!expanded && <i className="exercise--caret fa-solid fa-caret-down"></i>}
+                    {expanded && <i className="exercise--caret fa-solid fa-caret-up"></i>}
+                </h3>
+                <p className='exercise--title-p'>{exercise.primaryMuscles.join(', ')}</p>
+            </div>
         </div>
         {expanded &&
         <div>
