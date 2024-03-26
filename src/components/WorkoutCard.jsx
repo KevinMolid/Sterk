@@ -10,6 +10,7 @@ function WorkoutCard() {
     return (
         <div className='workout-card'>
             <h3>Stronglifts 5x5 (workout A)</h3>
+            <p className='workout-card--category'>Strength</p>
             <ul className='workout-card--exercises-ul'>
                 <li className='workout-card--exercise-li'>
                     <span className='bold'>Squats</span> <span>5x5 60kg</span>
@@ -21,7 +22,10 @@ function WorkoutCard() {
                     <span className='bold'>Barbell row</span> <span>5x5 60kg</span>
                 </li>
             </ul>
-            <button className='btn btn-primary'>Start workout</button>
+            <button className='btn btn-primary'>
+                Start workout
+                <i className="btn-icon fa-solid fa-chevron-right"></i>
+            </button>
         </div>
     )
 }
