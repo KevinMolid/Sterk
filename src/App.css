@@ -408,6 +408,21 @@ main {
   outline: none;
 }
 
+/* Workouts */
+
+.workout-card--exercises-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.workout-card--exercise-li {
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* */
+
 a {
   font-weight: 500;
   color: #64d2ff;

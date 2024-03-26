@@ -1,10 +1,17 @@
 import React from 'react'
+import WorkoutCard from '/src/components/WorkoutCard.jsx'
 
 function Workouts() {
     return (
       <main>
         <h2>Workouts</h2>
-        <input className='search-bar' type='text'></input>
+        <div className="exercises--input-wrapper">
+          <span className="exercises--input-icon material-symbols-outlined">
+            search
+          </span>
+          <input className="exercises--input" type="text" placeholder='Search'/>
+        </div>
+        <WorkoutCard />
         <h3>Stronglifts 5x5 A</h3>
         <p>
           <span className='bold'>Squat</span> 5x
