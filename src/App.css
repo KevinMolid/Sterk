@@ -496,9 +496,21 @@ p {
 
 /* Inputs */
 input {
+  color: #fafafa;
   width: 100%;
-  padding-inline: 0.4em;
+  padding: 0.5em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: #111;
+  border: 1px solid #555;
+  border-radius: 15px;
+}
+
+select {
+  color: #fafafa;
+  background: #111;
+  border: 1px solid #555;
+  padding: 0.5em;
+  border-radius: 15px;
 }
 
 /* Buttons */
