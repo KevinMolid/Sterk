@@ -1,10 +1,14 @@
 import './App.css'
 import React, { useEffect, useState } from 'react'
+
+// Components
 import Header from './components/Header'
 import Navbar from './components/NavBar'
 import Exercises from './pages/Exercises'
 import Workouts from './pages/Workouts'
+import Profile from './pages/Profile'
 import Progress from './pages/Progress'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import sterkLogo from '/src/assets/logoBlack.png'
 
@@ -46,8 +50,7 @@ function App() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
-        setUser(user)
-      })
+        setUser(user)      })
       .catch((error) => {
         console.error(error)
       })
@@ -152,8 +155,8 @@ function App() {
               refreshFlag={refreshExercises}
               handleExerciseAdded={handleExerciseAdded}/>} />
             <Route path="/workouts" element={<Workouts />} />
+            <Route path="/profile" element={<Profile user={user}/>} />
             <Route path="/progress" element={<Progress />} />
-            {/* Add more routes as needed */}
           </Routes>
           <Navbar />
         </>

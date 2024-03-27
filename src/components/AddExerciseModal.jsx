@@ -59,7 +59,7 @@ function AddExerciseModal(props) {
     }
   }
 
-  // Handle form sumbission
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault()
     console.log('Submitting form with:', { name, category, type, root, primaryMuscles, secondaryMuscles })

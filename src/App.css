@@ -441,6 +441,33 @@ main {
   border-bottom: 1px solid #555;
 }
 
+/* Profile */
+.profile--heading {
+  margin: 1em 0 0.5em;
+}
+
+.profile--user-wrapper {
+  display: flex;
+  margin-bottom: 1em; 
+}
+
+.profile--user-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 30px;
+  margin-right: 1em;
+}
+
+/* Add PR Modal */
+.add-pr-modal {
+  padding: 0.5em 1em;
+  border: 1px solid #555;
+  border-radius: 10px;
+  margin-block: 1em;
+  position: relative;
+}
+
 /* */
 
 a {
@@ -561,7 +588,30 @@ button {
   margin: 0;
 }
 
+.btn-close {
+  color: #fafafa;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 0 10px 0 5px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 /* Utility */
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .grid-2-col {
   width: 100%;
   display: grid;
