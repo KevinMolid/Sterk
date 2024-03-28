@@ -72,7 +72,8 @@ function App() {
     if (!docSnap.exists()) {
       await setDoc(userProfileRef, {
         displayName: user.displayName || '',
-        photoURL: user.photoURL || ''
+        photoURL: user.photoURL || '',
+        email: user.email || ''
       }, { merge: true })
     }
   }
