@@ -83,11 +83,15 @@ function Profile({ user, exercises }) {
             togglePrModal={togglePrModal}
             user={user} 
             exercises={exercises}/>}
-          {prs.map((pr, index) => (
-            <div key={index}>
-              <p className="flex-space"><span>{pr.name}</span> {pr.value} kg</p>
-            </div>
-          ))}
+          {prs.length > 0 ? (
+            prs.map((pr, index) => (
+              <div key={index}>
+                <p className="flex-space"><span>{pr.name}</span> {pr.value} kg</p>
+              </div>
+            ))
+          ) : (
+            <p>You have no PRs</p>
+          )}
         </div>
       </main>
     )
