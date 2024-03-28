@@ -187,8 +187,9 @@ main {
 .navBar--ul {
   margin: 0;
   width: 100%;
-  display: flex;
-  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-inline: 0.5em;
   list-style-type: none;
   justify-content: space-evenly;
 }
@@ -206,6 +207,12 @@ main {
   background-color: #666;
 }
 
+.navBar--li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 .navBar--li a {
   color: #666;
 }
@@ -216,10 +223,6 @@ main {
 
 .navBar--li:hover .navBar--icon {
   background-color: #90e43a;
-}
-
-.navBar a {
-  font-size: 0.9em;
 }
 
 /* Find friends */

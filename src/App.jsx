@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react'
 // Components
 import Header from './components/Header'
 import Navbar from './components/NavBar'
+
+// Pages
+import Home from './pages/Home'
 import FindFriends from './pages/FindFriends.jsx'
 import Exercises from './pages/Exercises'
 import Workouts from './pages/Workouts'
@@ -226,18 +229,6 @@ function App() {
         }
       </div>
     </Router>
-  )
-}
-
-// Placeholder Home component
-function Home() {
-  return (
-    <main>
-      <h2>Welcome to Sterk!</h2>
-      <a href="/workouts"><button className='btn btn-primary'>Start workout <i className="btn-icon fa-solid fa-chevron-right"></i></button></a>
-      <a href="/exercises"><button className='btn btn-secondary'>Browse exercises <i className="btn-icon fa-solid fa-chevron-right"></i></button></a>
-      <a href="/progress"><button className='btn btn-secondary'>Track your progress <i className="btn-icon fa-solid fa-chevron-right"></i></button></a>
-    </main>
   )
 }
 
