@@ -6,7 +6,9 @@ function Workouts() {
       <main>
         <div className='workouts--heading-wrapper'>
           <h2>Workouts</h2>
-          <button className='btn-txt'>Create workout</button>
+          <a href="/createworkout">
+            <button className='btn-txt'>Create workout</button>
+          </a>
         </div>
         <div className="exercises--input-wrapper">
           <span className="exercises--input-icon material-symbols-outlined">

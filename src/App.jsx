@@ -7,9 +7,10 @@ import Navbar from './components/NavBar'
 
 // Pages
 import Home from './pages/Home'
-import FindFriends from './pages/FindFriends.jsx'
+import FindFriends from './pages/FindFriends'
 import Exercises from './pages/Exercises'
 import Workouts from './pages/Workouts'
+import CreateWorkout from './pages/CreateWorkout'
 import Profile from './pages/Profile'
 import Progress from './pages/Progress'
 
@@ -219,6 +220,7 @@ function App() {
               handleExerciseAdded={handleExerciseAdded}
               exercises={exercises} />} />
             <Route path="/workouts" element={<Workouts />} />
+            <Route path="/createworkout" element={<CreateWorkout />} />
             <Route path="/profile" element={<Profile 
               user={user} 
               exercises={exercises}/>} />

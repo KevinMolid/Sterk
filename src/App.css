@@ -497,6 +497,18 @@ main {
   border-bottom: 1px solid #555;
 }
 
+/* Create workout */
+.create-workout--workout-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #555;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  outline: none;
+}
+
 /* Profile */
 .profile--heading {
   margin-bottom: 0.5em;
@@ -579,6 +591,18 @@ select {
   border: 1px solid #555;
   padding: 0.5em;
   border-radius: 15px;
+}
+
+textarea {
+  color: #fafafa;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: 100%;
+  padding: 0.5em 1em;
+  background: #222;
+  resize: none;
+  border: none;
+  border-radius: 10px;
+  outline: none;
 }
 
 /* Buttons */
@@ -736,6 +760,10 @@ button {
 
 .white {
   color: #ffffff;
+}
+
+.grey {
+  color: #999;
 }
 
 .green {
