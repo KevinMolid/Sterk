@@ -121,17 +121,17 @@ function App() {
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // The signed-in user info.
-        const user = result.user;
+        const user = result.user
         // IdP data available using getAdditionalUserInfo(result)
         setUser(user)
         createUserProfile(user)
       }).catch((error) => {
         console.log(error)
-      });
+      })
     }
 
   function authSignOut() {
-    const auth = getAuth();
+    const auth = getAuth()
     signOut(auth).then(() => {
       setUser(null)
     }).catch((error) => {
@@ -169,7 +169,7 @@ function App() {
               placeholder="Password"
               required
               />
-            <p className='signIn--p'>Forgot password?</p>
+            <p className='signIn--p small'>Forgot password?</p>
             <button className="btn btn-primary margin-bottom-1" onClick={authSignInWithEmail}>Sign in</button>
             <button className="btn btn-secondary margin-bottom-2" onClick={authCreateAccountWithEmail}>Create account</button>
           </form>
@@ -179,7 +179,7 @@ function App() {
   }
 
   if (loading) {
-    return <div className='loading'>Loading...</div>; // Show loading screen while auth state is loading
+    return <div className='loading'>Loading...</div> // Show loading screen while auth state is loading
   }
 
   return (

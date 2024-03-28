@@ -52,9 +52,9 @@ function Profile({ user, exercises }) {
       <main>
         <h2 className="profile--heading">Profile</h2>
         <div className="profile--user-wrapper">
-            <img className="profile--user-img" src={user.photoURL} alt="profile image" />
+            <img className="profile--user-img" src={user.photoURL || '/assets/default.webp'} alt="profile image" />
             <div>
-                <h3>{user.displayName}</h3>
+                <h3>{user.displayName || user.email}</h3>
                 <p>{user.email}</p>
             </div>
         </div>

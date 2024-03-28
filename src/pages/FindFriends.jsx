@@ -21,11 +21,11 @@ function FindFriends() {
       {users.length > 0 ? (
         <div>
           {users.map((user) => (
-            <div className='find-friends--user-banner' key={user.id} style={{ marginBottom: '20px' }}>
+            <div className='find-friends--user-banner' key={user.id}>
               <div className='find-friends--user-wrapper'>
-                <img className='find-friends--user-img' src={user.photoURL || '/path/to/default/avatar.png'} alt={user.displayName} />
+                <img className='find-friends--user-img' src={user.photoURL || '/assets/default.webp'} alt={user.displayName} />
                 <div className='find-friends--user-details'>
-                    <p className='white small bold'>{user.displayName}</p>
+                    <p className='white small bold'>{user.displayName || user.email}</p>
                     <p className='small'>{user.email}</p>
                 </div>
               </div>

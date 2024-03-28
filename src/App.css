@@ -75,13 +75,18 @@
 .signIn--h2 {
   font-size: 1.5rem;
   font-weight: 400;
-  margin-top: 0;
+  margin-bottom: 0.5em;
 }
 
 .signIn--p {
   color: #999;
   text-align: left;
   margin: 0.5em 0 2em;
+  cursor: pointer;
+}
+
+.signIn--p:hover {
+  color: #ccc;
 }
 
 .signIn--input {
@@ -90,6 +95,7 @@
   width: 100%;
   height: 32px;
   border: none;
+  border-radius: 0;
   background: none;
   outline: none;
   border-bottom: 1px solid #fff;
