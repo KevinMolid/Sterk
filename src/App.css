@@ -98,7 +98,27 @@
   border-radius: 0;
   background: none;
   outline: none;
+}
+
+.signIn--input-wrapper {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  color: #fafafa;
+  background: #111;
+  padding-inline: 0.5em;
   border-bottom: 1px solid #fff;
+  border-radius: 0;
+  user-select: none;
+  margin-bottom: 0.5em;
+}
+
+.signIn--input-icon {
+  color: #fafafa;
+}
+
+.signIn--error-msg {
+  margin-block: -0.5em 1em;
 }
 
 /* loading */

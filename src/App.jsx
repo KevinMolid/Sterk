@@ -30,6 +30,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [exercises, setExercises] = useState([])
+  const [errorMsg, setErrorMsg] = useState('')
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
 
@@ -88,11 +89,12 @@ function App() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
+        setErrorMsg('')
         setUser(user)
         createUserProfile(user)
       })
       .catch((error) => {
-        console.error(error)
+        setErrorMsg(error.message)
       })
   }
 
@@ -106,11 +108,12 @@ function App() {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user
+        setErrorMsg('')
         setUser(user)
         createUserProfile(user)
       })
       .catch((error) => {
-        console.error(error)
+        setErrorMsg(error.message)
       })
   }
 
@@ -123,10 +126,11 @@ function App() {
         // The signed-in user info.
         const user = result.user
         // IdP data available using getAdditionalUserInfo(result)
+        setErrorMsg('')
         setUser(user)
         createUserProfile(user)
       }).catch((error) => {
-        console.log(error)
+        setErrorMsg(error.message)
       })
     }
 
@@ -153,15 +157,26 @@ function App() {
           <button className="btn btn-provider margin-bottom-2" onClick={authSignInWithGoogle}>
             <img className="btn-img" src="/assets/googleLogo.png"/>
             Sign in with Google</button>
-            <input 
-              className="signIn--input margin-bottom-1" 
+
+            <div className="signIn--input-wrapper">
+              <span className="signIn--input-icon material-symbols-outlined">
+                email
+              </span>
+              <input 
+              className="signIn--input" 
               type="email" 
               name="email" 
               id="email" 
               placeholder="Email"
               required
               />
-            <input 
+            </div>
+
+            <div className="signIn--input-wrapper">
+              <span className="signIn--input-icon material-symbols-outlined">
+                key
+              </span>
+              <input 
               className="signIn--input" 
               type="password" 
               name="pw" 
@@ -169,7 +184,11 @@ function App() {
               placeholder="Password"
               required
               />
+            </div>
             <p className='signIn--p small'>Forgot password?</p>
+            <div>
+              <p className='signIn--error-msg red'>{errorMsg}</p>
+            </div>
             <button className="btn btn-primary margin-bottom-1" onClick={authSignInWithEmail}>Sign in</button>
             <button className="btn btn-secondary margin-bottom-2" onClick={authCreateAccountWithEmail}>Create account</button>
           </form>
