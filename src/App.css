@@ -196,6 +196,26 @@ main {
   font-size: 0.9em;
 }
 
+/* Find friends */
+.find-friends--user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.find-friends--user-info {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.find-friends--user-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 /* Exercises */
 .exercises--heading-wrapper {
   display: flex;
@@ -632,6 +652,17 @@ button {
 
 .btn-close:hover {
   background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-follow {
+  font-size: 0.7em;
+  font-weight: 600;
+  height: 30px;
+  width: 70px;
+  color: #90e43a;
+  background: none;
+  border: 1px solid #90e43a;
+  border-radius: 15px;
 }
 
 /* Utility */
