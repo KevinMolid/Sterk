@@ -143,7 +143,7 @@
 }
 
 main {
-  padding: 4rem 1rem 8rem 1rem;
+  padding: 5rem 1rem 8rem 1rem;
 }
 
 /* navBar */
@@ -197,13 +197,15 @@ main {
 }
 
 /* Find friends */
-.find-friends--user-wrapper {
+.find-friends--user-banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #555;
+  padding-block: 0.5em;
 }
 
-.find-friends--user-info {
+.find-friends--user-wrapper {
   display: flex;
   align-items: center;
   gap: 1em;
@@ -221,7 +223,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1em 0 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .exercises--heading-wrapper h2 {
@@ -439,7 +441,7 @@ main {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin: 1em 0 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .workout-card {
@@ -468,7 +470,7 @@ main {
 
 /* Profile */
 .profile--heading {
-  margin: 1em 0 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .profile--user-wrapper {

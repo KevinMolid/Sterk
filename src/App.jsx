@@ -73,7 +73,8 @@ function App() {
       await setDoc(userProfileRef, {
         displayName: user.displayName || '',
         photoURL: user.photoURL || '',
-        email: user.email || ''
+        email: user.email || '',
+        PRs: [],
       }, { merge: true })
     }
   }
