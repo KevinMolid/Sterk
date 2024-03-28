@@ -618,6 +618,11 @@ button {
 }
 
 /* Utility */
+.flex-gap {
+  display: flex;
+  gap: 1em;
+}
+
 .flex-space {
   display: flex;
   justify-content: space-between;
@@ -638,12 +643,24 @@ button {
   margin-bottom: 2rem;
 }
 
+.small {
+  font-size: 0.8em;
+}
+
+.large {
+  font-size: 1.2rem;
+}
+
 .bold {
   font-weight: 600;
 }
 
 .white {
   color: #ffffff;
+}
+
+.green {
+  color: #90e43a;
 }
 
 .search-bar {

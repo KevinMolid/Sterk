@@ -11,31 +11,12 @@ import { getFirestore, getDocs,
 import { db } from '../config.jsx'
 
 // Exercises component
-function Exercises({ refreshFlag, handleExerciseAdded }) {
+function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
   const [modalExpanded, setModalExpanded] = useState(false)
-  const [exercises, setExercises] = useState([])
 
   function toggleModal() {
     setModalExpanded(prevState => !prevState)
   }
-
-  useEffect(() => {
-    const fetchExercises = async () => {
-      const querySnapshot = await getDocs(collection(db, "exercises"))
-      const exercisesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      const alphabeticalExercisesList = exercisesList.sort(function(a, b) {
-        if (a.name < b.name) {
-          return -1
-        } else if (a.name > b.name) {
-          return 1
-        } else {
-          return 0
-        }
-      })
-      setExercises(alphabeticalExercisesList)
-    }
-    fetchExercises()
-  }, [refreshFlag]) // re-fetches when flagged
 
   const exercisesHTML = exercises.map(exercise => {
     return (

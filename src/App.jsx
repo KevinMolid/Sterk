@@ -21,12 +21,34 @@ import { getAuth,
 
 import { auth, provider, db } from './config.jsx'
 
+// Firebase Firestore
+import { getFirestore, getDocs, 
+  collection } from "firebase/firestore"
+
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-
+  const [exercises, setExercises] = useState([])
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
+
+  useEffect(() => {
+    const fetchExercises = async () => {
+      const querySnapshot = await getDocs(collection(db, "exercises"))
+      const exercisesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      const alphabeticalExercisesList = exercisesList.sort(function(a, b) {
+        if (a.name < b.name) {
+          return -1
+        } else if (a.name > b.name) {
+          return 1
+        } else {
+          return 0
+        }
+      })
+      setExercises(alphabeticalExercisesList)
+    }
+    fetchExercises()
+  }, [refreshExercises]) // re-fetches when flagged
 
   // Callback function to trigger refresh
   const handleExerciseAdded = () => {
@@ -153,9 +175,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/exercises" element={<Exercises 
               refreshFlag={refreshExercises}
-              handleExerciseAdded={handleExerciseAdded}/>} />
+              handleExerciseAdded={handleExerciseAdded}
+              exercises={exercises} />} />
             <Route path="/workouts" element={<Workouts />} />
-            <Route path="/profile" element={<Profile user={user}/>} />
+            <Route path="/profile" element={<Profile 
+              user={user} 
+              exercises={exercises}/>} />
             <Route path="/progress" element={<Progress />} />
           </Routes>
           <Navbar />
