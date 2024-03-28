@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 // Components
 import Header from './components/Header'
 import Navbar from './components/NavBar'
+import FindFriends from './pages/FindFriends.jsx'
 import Exercises from './pages/Exercises'
 import Workouts from './pages/Workouts'
 import Profile from './pages/Profile'
@@ -22,7 +23,7 @@ import { getAuth,
 import { auth, provider, db } from './config.jsx'
 
 // Firebase Firestore
-import { getFirestore, getDocs, 
+import { doc, getDoc, getDocs, setDoc,
   collection } from "firebase/firestore"
 
 function App() {
@@ -63,6 +64,19 @@ function App() {
     return () => unsubscribe()
   }, [])
 
+  // Create user profile in firestore users db
+  const createUserProfile = async (user) => {
+    const userProfileRef = doc(db, "users", user.uid)
+    const docSnap = await getDoc(userProfileRef)
+  
+    if (!docSnap.exists()) {
+      await setDoc(userProfileRef, {
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || ''
+      }, { merge: true })
+    }
+  }
+
   // sign up
   function authCreateAccountWithEmail(event) {
     event.preventDefault()
@@ -72,7 +86,9 @@ function App() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
-        setUser(user)      })
+        setUser(user)
+        createUserProfile(user)
+      })
       .catch((error) => {
         console.error(error)
       })
@@ -89,6 +105,7 @@ function App() {
         // Signed in 
         const user = userCredential.user
         setUser(user)
+        createUserProfile(user)
       })
       .catch((error) => {
         console.error(error)
@@ -101,12 +118,11 @@ function App() {
       signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         setUser(user)
+        createUserProfile(user)
       }).catch((error) => {
         console.log(error)
       });
@@ -173,6 +189,7 @@ function App() {
           <Header signOut={authSignOut} />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/findfriends" element={<FindFriends />} />
             <Route path="/exercises" element={<Exercises 
               refreshFlag={refreshExercises}
               handleExerciseAdded={handleExerciseAdded}
