@@ -8,17 +8,22 @@ import { db } from '../config.jsx'
 function Profile({ user, exercises }) {
   const [prModalExpanded, setPrModalExpanded] = useState(false)
   const [prs, setPrs] = useState([])
+  const [updatePrsFlag, setUpdatePrsFlag] = useState(false)
 
   useEffect(() => {
     const getPrs = async () => {
-      const userPrs = await fetchUserPRs(user.uid);
+      const userPrs = await fetchUserPRs(user.uid)
       setPrs(userPrs);
     };
 
     if (user.uid) {
-      getPrs();
+      getPrs()
     }
-  }, [user]);
+  }, [user, updatePrsFlag])
+
+  function updatePrs() {
+    setUpdatePrsFlag(prevFlag => !prevFlag)
+  }
 
   async function fetchUserPRs(userId) {
     // Reference to the user's document in the 'users' collection
@@ -67,14 +72,17 @@ function Profile({ user, exercises }) {
           <h3 className='margin-bottom-1'>Statistics</h3>
           <div className='margin-bottom-1'>
             <h4>Estimated 1RM</h4>
-            <p>Bench press: 80 kg</p>
+            <p>Not yet implemented</p>
           </div>
           <div className="flex-space">
             <h4>All-time 1RM PRs</h4>
             <button className='btn-txt' onClick={togglePrModal}>Add PR</button>
           </div>
-          {prModalExpanded && <AddPrModal user={user} exercises={exercises}/>}
-          <p className="flex-space"><span>Bench press</span>77.5 kg</p>
+          {prModalExpanded && <AddPrModal 
+            updatePrs={updatePrs} 
+            togglePrModal={togglePrModal}
+            user={user} 
+            exercises={exercises}/>}
           {prs.map((pr, index) => (
             <div key={index}>
               <p className="flex-space"><span>{pr.name}</span> {pr.value} kg</p>

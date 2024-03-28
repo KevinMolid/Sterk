@@ -468,6 +468,18 @@ main {
   position: relative;
 }
 
+.add-pr-modal--error {
+  font-size: 0.8em;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-pr-modal-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 /* */
 
 a {
@@ -661,6 +673,10 @@ button {
 
 .green {
   color: #90e43a;
+}
+
+.red {
+  color: #ff726d;
 }
 
 .search-bar {
