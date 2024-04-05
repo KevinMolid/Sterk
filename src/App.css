@@ -720,6 +720,12 @@ button {
   border-radius: 15px;
 }
 
+.btn-follow:hover {
+  color: #000;
+  background: #90e43a;
+  cursor: pointer;
+}
+
 /* Utility */
 .flex-gap {
   display: flex;
