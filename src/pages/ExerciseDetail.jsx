@@ -34,12 +34,13 @@ export default function ExerciseDetail(){
     }
 
     return (
-        <main>
-            <h2>{exercise.name}</h2>
-            <p>{exercise.category}</p>
-            <p>{exercise.primaryMuscles.join(', ')}</p>
-            <p>{exercise.secondaryMuscles.join(', ')}</p>
-
-        </main>
+        exercise && (
+            <main>
+                <h2>{exercise.name}</h2>
+                <p>{exercise.category}</p>
+                <p>{exercise.primaryMuscles.join(', ')}</p>
+                <p>{exercise.secondaryMuscles.join(', ')}</p>
+            </main>
+        )
     )
 }
