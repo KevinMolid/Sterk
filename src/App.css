@@ -23,13 +23,23 @@
   margin: 0;
 }
 
+/* */
+/* Override background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #111 inset !important; /* Change 'white' to match your input's background-color */
+    -webkit-text-fill-color: #fafafa !important; /* Optional: if you need to change the text color */
+  }
+
 /* Components */
 /* Card */
 .card{
   max-width: 500px;
   margin-inline: auto;
   background: #222;
-  padding: 1em 2em;
+  padding: 1em;
   border-radius: 10px;
 }
 
