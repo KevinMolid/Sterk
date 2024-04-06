@@ -12,6 +12,7 @@ import Navbar from './components/NavBar'
 import Home from './pages/Home'
 import FindFriends from './pages/FindFriends'
 import Exercises from './pages/Exercises'
+import ExerciseDetail from './pages/ExerciseDetail'
 import Workouts from './pages/Workouts'
 import CreateWorkout from './pages/CreateWorkout'
 import Profile from './pages/Profile'
@@ -83,6 +84,7 @@ function App() {
               refreshFlag={refreshExercises}
               handleExerciseAdded={handleExerciseAdded}
               exercises={exercises} />} />
+            <Route path="/exercises/:id" element={<ExerciseDetail />} />
             <Route path="/workouts" element={<Workouts />} />
             <Route path="/createworkout" element={<CreateWorkout />} />
             <Route path="/profile" element={<Profile 

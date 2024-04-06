@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ExerciseCard from '../components/ExerciseCard.jsx'
 import AddExerciseModal from '../components/AddExerciseModal.jsx'
-
-import { initializeApp } from "firebase/app"
-
-// Firebase Firestore
-import { getFirestore, getDocs, 
-  collection } from "firebase/firestore"
-  
-import { db } from '../config.jsx'
 
 // Exercises component
 function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
@@ -20,7 +13,11 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
 
   const exercisesHTML = exercises.map(exercise => {
     return (
-      <ExerciseCard key={exercise.id} exercise={exercise} />
+      <Link key={exercise.id} 
+        to={`/exercises/${exercise.id}`}
+        aria-label={`view details for ${exercise.name}`} >
+        <ExerciseCard exercise={exercise} />
+      </Link>
     )
   })
 

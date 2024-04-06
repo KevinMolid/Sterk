@@ -574,11 +574,8 @@ main {
 
 a {
   font-weight: 500;
-  color: #64d2ff;
+  color: inherit;
   text-decoration: inherit;
-}
-a:hover {
-  color: #79e0ff;
 }
 
 body {
