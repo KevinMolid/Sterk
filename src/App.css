@@ -23,6 +23,16 @@
   margin: 0;
 }
 
+/* Components */
+/* Card */
+.card{
+  max-width: 500px;
+  margin-inline: auto;
+  background: #222;
+  padding: 1em 2em;
+  border-radius: 10px;
+}
+
 /* SignIn */
 .signIn {
   position: absolute;
@@ -742,6 +752,12 @@ button {
   width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.grid-3-col {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .margin-bottom-1 {
