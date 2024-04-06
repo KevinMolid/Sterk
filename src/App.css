@@ -158,6 +158,7 @@ input:-webkit-autofill:active  {
   justify-content: space-between;
   align-items: center;
   top: 0;
+  left: 0;
   width: 100svw;
   padding: 0.5em 1em;
   background: rgb(99,213,60);
@@ -198,6 +199,7 @@ main {
   padding: 0;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100svw;
   background: #111;
   border-top: 1px solid #333;
