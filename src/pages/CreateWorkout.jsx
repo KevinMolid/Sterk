@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Exercise from '../components/ChooseExercise.jsx'
+import ExerciseList from '../components/ExerciseList.jsx'
 
-function CreateWorkout() {
+function CreateWorkout(exercisesFromDb) {
     const [workoutName, setWorkoutName] = useState('New workout')
     const [description, setDescription] = useState('')
+    const [availableExercises, setAvailableExercises] = useState(exercisesFromDb)
     const [exercises, setExercises] = useState([])
+    const [choosingExercise, setChoosingExercise] = useState(false)
 
     // Handle changes in input fields
     const handleNameChange = (event) => {
@@ -17,14 +20,20 @@ function CreateWorkout() {
 
     const addExercise = (event) => {
       event.preventDefault()
-      setExercises(prevExercises => {
-        const key = prevExercises.length
-        return [...prevExercises, <Exercise key={key}/>]
-      })
+      const newExercise = {
+        id: exercises.length.toString(), // Simple ID generation
+        sets: [
+          { reps: 10, weight: 40 }, // Example set
+          // Add more sets as needed
+        ]
+      }
+
+      setExercises(prevExercises => [...prevExercises, newExercise])
     }
 
     return (
       <main>
+        {choosingExercise && (<ExerciseList exercisesFromDb={exercisesFromDb}/>)}
         <form>
             <input className="create-workout--workout-name margin-bottom-1" 
                 type="text" 
@@ -36,7 +45,15 @@ function CreateWorkout() {
               onChange={handleDescriptionChange}></textarea>
             <button className='btn-txt' onClick={addExercise}>Add exercise</button>
         </form>
-        {exercises}
+        {/* Render exercises */}
+        {exercises.map((exercise, index) => (
+          <div key={index}>
+            <h3>Exercise {index + 1}</h3>
+            {exercise.sets.map((set, setIndex) => (
+              <p key={setIndex}>Set {setIndex + 1}: {set.reps} reps at {set.weight} lbs</p>
+            ))}
+          </div>
+        ))}
       </main>
     )
   }

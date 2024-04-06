@@ -22,10 +22,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { onAuthStateChanged } from "firebase/auth"
 
-import { auth, provider, db } from './config.jsx'
+import { auth, db } from './config.jsx'
 
 // Firebase Firestore
-import { doc, getDoc, getDocs, setDoc,
+import { getDocs,
   collection } from "firebase/firestore"
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
 
+  // Fetch exercises from database 
   useEffect(() => {
     const fetchExercises = async () => {
       const querySnapshot = await getDocs(collection(db, "exercises"))
@@ -86,7 +87,8 @@ function App() {
               exercises={exercises} />} />
             <Route path="/exercises/:id" element={<ExerciseDetail />} />
             <Route path="/workouts" element={<Workouts />} />
-            <Route path="/createworkout" element={<CreateWorkout />} />
+            <Route path="/createworkout" element={<CreateWorkout 
+              exercisesFromDb={exercises}/>} />
             <Route path="/profile" element={<Profile 
               user={user} 
               exercises={exercises}/>} />
