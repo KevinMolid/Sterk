@@ -1,5 +1,5 @@
 import { React, useContext } from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 import UserContext from '../UserContext'
 
 export default function ProfileLayout() {
@@ -27,8 +27,14 @@ export default function ProfileLayout() {
             </div>
             {/* Navigation */}
             <nav className='nav'>
-                <Link to="/profile/"><p className='margin-bottom-1'>Activities</p></Link>
-                <Link to="/profile/stats"><p className='margin-bottom-1'>Statistics</p></Link>
+                <NavLink to="/profile"
+                    className={({isActive}) => isActive ? 'nav-active' : null} end>
+                    <p className='margin-bottom-1'>Activities</p>
+                </NavLink>
+                <NavLink to="/profile/stats"
+                    className={({isActive}) => isActive ? 'nav-active' : null}>
+                    <p className='margin-bottom-1'>Statistics</p>
+                </NavLink>
             </nav>
             <Outlet />
         </main>

@@ -219,6 +219,11 @@ main {
   color: #fafafa;
 }
 
+.nav-active p {
+  font-weight: 600;
+  color: #fafafa;
+}
+
 /* navBar */
 .navBar {
   color: #fff;
@@ -271,6 +276,15 @@ main {
 
 .navBar--li:hover .navBar--icon {
   background-color: #90e43a;
+}
+
+/* navLink */
+.navlink-active .navBar--icon {
+  background: #90e43a;
+}
+
+.navlink-active .navbar--a {
+  color: #90e43a;
 }
 
 /* Find friends */
