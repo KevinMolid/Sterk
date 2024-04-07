@@ -18,7 +18,9 @@ import Workouts from './pages/Workouts'
 import CreateWorkout from './pages/CreateWorkout'
 import Progress from './pages/Progress'
 import SignIn from './pages/SignIn'
-import UserStats from './pages/Profile/UserStats.jsx'
+import UserActivities from './pages/Profile/UserActivities'
+import UserStats from './pages/Profile/UserStats'
+
 
 // Firebase Firestore
 import { getDocs,
@@ -76,26 +78,24 @@ function App() {
         <>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/findfriends" element={<FindFriends />} />
-              <Route path="/exercises" element={<Exercises 
+              <Route index element={<Home />} />
+              <Route path="findfriends" element={<FindFriends />} />
+              <Route path="exercises" element={<Exercises 
                 refreshFlag={refreshExercises}
                 handleExerciseAdded={handleExerciseAdded}
                 exercises={exercises} />} />
-              <Route path="/exercises/:id" element={<ExerciseDetail />} />
-              <Route path="/workouts" element={<Workouts />} />
-              <Route path="/createworkout" element={<CreateWorkout 
+              <Route path="exercises/:id" element={<ExerciseDetail />} />
+              <Route path="workouts" element={<Workouts />} />
+              <Route path="createworkout" element={<CreateWorkout 
                 exercisesFromDb={exercises}/>} />
 
               {/* Profile page */}
-              <Route path='/profile' element={<ProfileLayout />}>
-              {/*<Route path="/profile" element={<Profile 
-                user={user} 
-              exercises={exercises}/>}>*/}
-                  <Route path="/profile/stats" element={<UserStats />} />
+              <Route path='profile' element={<ProfileLayout />}>
+                <Route index element={<UserActivities />} />
+                <Route path="stats" element={<UserStats />} />
               </Route>
 
-              <Route path="/progress" element={<Progress />} />
+              <Route path="progress" element={<Progress />} />
             </Route>
           </Routes>
         </>
