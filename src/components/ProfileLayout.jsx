@@ -15,18 +15,21 @@ export default function ProfileLayout() {
                     <p>{user.email}</p>
                 </div>
             </div>
-            <div className='flex-gap margin-bottom-1'>
-            <div>
-                <p className='small green'>Following</p>
-                <p className='large white'>0</p>
+
+            {/* Followers */}
+            <div className='flex-gap margin-bottom-2'>
+                <div>
+                    <p className='small green'>Following</p>
+                    <p className='large white'>0</p>
+                </div>
+                <div>
+                    <p className='small green'>Followers</p>
+                    <p className='large white'>0</p>
+                </div>
             </div>
-            <div>
-                <p className='small green'>Followers</p>
-                <p className='large white'>0</p>
-            </div>
-            </div>
+
             {/* Navigation */}
-            <nav className='nav'>
+            <nav className='nav border-bottom-1'>
                 <NavLink to="/profile"
                     className={({isActive}) => isActive ? 'nav-active' : null} end>
                     <p className='margin-bottom-1'>Activities</p>

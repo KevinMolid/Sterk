@@ -208,6 +208,11 @@ main {
 .nav {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1em;
+}
+
+.nav a {
+  line-height: 0;
 }
 
 .nav p {
@@ -786,6 +791,10 @@ button {
 }
 
 /* Utility */
+.border-bottom-1 {
+  border-bottom: 1px solid #555;
+}
+
 .flex-gap {
   display: flex;
   gap: 1em;
