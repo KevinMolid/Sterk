@@ -1,12 +1,13 @@
 import './App.css'
-import React, { useEffect, useState } from 'react'
-import { authSignOut } from '/src/functions/authFunctions'
+import React, { useEffect, useState, createContext } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { onAuthStateChanged } from "firebase/auth"
+import { auth, db } from './config.jsx'
+import UserContext from './UserContext'
 
-import SignIn from './pages/SignIn'
-
-// Components
-import Header from './components/Header'
-import Navbar from './components/NavBar'
+// Layouts
+import Layout from './components/Layout'
+import ProfileLayout from './components/ProfileLayout'
 
 // Pages
 import Home from './pages/Home'
@@ -15,14 +16,9 @@ import Exercises from './pages/Exercises'
 import ExerciseDetail from './pages/ExerciseDetail'
 import Workouts from './pages/Workouts'
 import CreateWorkout from './pages/CreateWorkout'
-import Profile from './pages/Profile'
 import Progress from './pages/Progress'
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-import { onAuthStateChanged } from "firebase/auth"
-
-import { auth, db } from './config.jsx'
+import SignIn from './pages/SignIn'
+import UserStats from './pages/Profile/UserStats.jsx'
 
 // Firebase Firestore
 import { getDocs,
@@ -72,33 +68,41 @@ function App() {
   }
 
   return (
-    <Router>
+    <UserContext.Provider value={{ user, setUser, exercises }}>
+      <Router>
       <div className="app">
         {!user && <SignIn/>}
         {user && 
         <>
-          <Header signOut={authSignOut} />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/findfriends" element={<FindFriends />} />
-            <Route path="/exercises" element={<Exercises 
-              refreshFlag={refreshExercises}
-              handleExerciseAdded={handleExerciseAdded}
-              exercises={exercises} />} />
-            <Route path="/exercises/:id" element={<ExerciseDetail />} />
-            <Route path="/workouts" element={<Workouts />} />
-            <Route path="/createworkout" element={<CreateWorkout 
-              exercisesFromDb={exercises}/>} />
-            <Route path="/profile" element={<Profile 
-              user={user} 
-              exercises={exercises}/>} />
-            <Route path="/progress" element={<Progress />} />
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/findfriends" element={<FindFriends />} />
+              <Route path="/exercises" element={<Exercises 
+                refreshFlag={refreshExercises}
+                handleExerciseAdded={handleExerciseAdded}
+                exercises={exercises} />} />
+              <Route path="/exercises/:id" element={<ExerciseDetail />} />
+              <Route path="/workouts" element={<Workouts />} />
+              <Route path="/createworkout" element={<CreateWorkout 
+                exercisesFromDb={exercises}/>} />
+
+              {/* Profile page */}
+              <Route path='/profile' element={<ProfileLayout />}>
+              {/*<Route path="/profile" element={<Profile 
+                user={user} 
+              exercises={exercises}/>}>*/}
+                  <Route path="/profile/stats" element={<UserStats />} />
+              </Route>
+
+              <Route path="/progress" element={<Progress />} />
+            </Route>
           </Routes>
-          <Navbar />
         </>
         }
       </div>
     </Router>
+    </UserContext.Provider>
   )
 }
 

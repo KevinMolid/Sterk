@@ -204,6 +204,21 @@ main {
   padding: 5rem 1rem 8rem 1rem;
 }
 
+/* */
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav p {
+  font-weight: 400;
+}
+
+.nav p:hover{
+  font-weight: 600;
+  color: #fafafa;
+}
+
 /* navBar */
 .navBar {
   color: #fff;
