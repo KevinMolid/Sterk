@@ -615,12 +615,21 @@ main {
   gap: 0.5em;
 }
 
-/* */
+/* Links */
 
 a {
-  font-weight: 500;
+  font-weight: 400;
   color: inherit;
   text-decoration: inherit;
+}
+
+.link {
+  font-weight: 400;
+  color: #bbb;
+}
+
+.link:hover {
+  color: #fafafa;
 }
 
 body {
@@ -832,6 +841,11 @@ button {
 
 .large {
   font-size: 1.2rem;
+}
+
+.regular {
+  font-weight: 400;
+
 }
 
 .bold {

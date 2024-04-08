@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { doc, getDoc } from "firebase/firestore"
 import { db } from '../config'
 
@@ -36,6 +36,12 @@ export default function ExerciseDetail(){
     return (
         exercise && (
             <main>
+                <div className='margin-bottom-1'>
+                    <Link className="link" to=".."
+                        relative="path" >
+                        <i className="fa-solid fa-arrow-left"></i> Back to exercises
+                    </Link>
+                </div>
                 <h2>{exercise.name}</h2>
                 <p>{exercise.category}</p>
                 <p>{exercise.primaryMuscles.join(', ')}</p>
