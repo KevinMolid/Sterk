@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom"
 import { doc, getDoc } from "firebase/firestore"
+import Badge from '../components/Badge'
 import { db } from '../config'
 
 export default function ExerciseDetail(){
@@ -42,10 +43,12 @@ export default function ExerciseDetail(){
                         <i className="fa-solid fa-arrow-left"></i> Back to exercises
                     </Link>
                 </div>
-                <h2>{exercise.name}</h2>
-                <p>{exercise.category}</p>
-                <p>{exercise.primaryMuscles.join(', ')}</p>
-                <p>{exercise.secondaryMuscles.join(', ')}</p>
+                <div className='flex-space margin-bottom-1'>
+                    <h2>{exercise.name}</h2>
+                    <Badge>{exercise.category}</Badge>
+                </div>
+                <p><span className='bold white'>Primary:</span> {exercise.primaryMuscles.join(', ')}</p>
+                <p><span className='bold white'>Secondary:</span> {exercise.secondaryMuscles.join(', ')}</p>
             </main>
         )
     )

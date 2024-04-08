@@ -43,6 +43,14 @@ input:-webkit-autofill:active  {
   border-radius: 10px;
 }
 
+.badge {
+  width: fit-content;
+  padding: 0.1em 0.8em;
+  background: #75356d;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
 /* Exercise list */
 .exercise-list{
   position: fixed;
