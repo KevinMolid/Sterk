@@ -1,5 +1,5 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { auth, provider, db } from '../config.jsx'
+import { auth, db } from '../config.jsx'
 import { getAuth,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
@@ -66,9 +66,8 @@ export const authSignInWithGoogle = async () => {
 // Sign out
 export function authSignOut() {
     const auth = getAuth()
-    signOut(auth).then(() => {
-        setUser(null)
-    }).catch((error) => {
+    signOut(auth)
+    .catch((error) => {
         console.error(error)
     })
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import ExerciseCard from '../components/ExerciseCard.jsx'
 import AddExerciseModal from '../components/AddExerciseModal.jsx'
 import Badge from '../components/Badge.jsx'
@@ -7,12 +7,19 @@ import Badge from '../components/Badge.jsx'
 // Exercises component
 function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
   const [modalExpanded, setModalExpanded] = useState(false)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const categoryFilter = searchParams.get("category")
+
 
   function toggleModal() {
     setModalExpanded(prevState => !prevState)
   }
 
-  const exercisesHTML = exercises.map(exercise => {
+  const displayedExercises = categoryFilter ? 
+    exercises.filter(exercise => exercise.category === categoryFilter) :
+    exercises
+
+  const exercisesHTML = displayedExercises.map(exercise => {
     return (
       <Link key={exercise.id} 
         to={`/exercises/${exercise.id}`}
@@ -39,9 +46,15 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
         <input className="exercises--input" type="text" placeholder='Search'/>
       </div>
       <div className="flex-gap margin-bottom-1">
-        <Badge className="calisthenics pointer">Calisthenics</Badge>
-        <Badge className="cardio pointer">Cardio</Badge>
-        <Badge className="strength pointer">Strength</Badge>
+        <Link to="?category=calisthenics">
+          <Badge className="calisthenics pointer">Calisthenics</Badge>
+        </Link>
+        <Link to="?category=cardio">
+          <Badge className="cardio pointer">Cardio</Badge>
+        </Link>
+        <Link to="?category=strength">
+          <Badge className="strength pointer">Strength</Badge>
+        </Link>
       </div>
       {exercisesHTML}
     </main>
