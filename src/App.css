@@ -9,13 +9,32 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: #ffffff;
-  background: #111;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --txt-1: #fafafa;
+  --txt-2: #bbb;
+  --bg-1: #111;
+  --bg-2: #222;
+  --primary: #90e43a;
+}
+
+.admin {
+  --txt-1: #fafafa;
+  --txt-2: #b6ccd3;
+  --bg-1: #111;
+  --bg-2: #222;
+  --primary: #ecca2f;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--txt-1);
+  background: var(--bg-1);
 }
 
 * {
@@ -24,12 +43,12 @@
 }
 
 /* */
-/* Override background color */
+/* Override background color on input autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #111 inset !important; /* Change 'white' to match your input's background-color */
+    -webkit-box-shadow: 0 0 0 30px var(--bg-1) inset !important; /* Change 'white' to match your input's background-color */
     -webkit-text-fill-color: #fafafa !important; /* Optional: if you need to change the text color */
   }
 
@@ -38,7 +57,7 @@ input:-webkit-autofill:active  {
 .card{
   max-width: 500px;
   margin-inline: auto;
-  background: #222;
+  background: var(--bg-2);
   padding: 1em;
   border-radius: 10px;
 }
@@ -71,7 +90,7 @@ input:-webkit-autofill:active  {
   z-index: 1;
   width: 100svw;
   height: 100svh;
-  background: #111;
+  background: var(--bg-1);
 }
 
 /* SignIn */
@@ -113,7 +132,7 @@ input:-webkit-autofill:active  {
 .signIn--card {
   max-width: 500px;
   margin-inline: auto;
-  background: #111;
+  background: var(--bg-1);
   padding: 1em 2em;
   margin-top: 1em;
   border-radius: 20px;
@@ -130,7 +149,7 @@ input:-webkit-autofill:active  {
 }
 
 .signIn--p {
-  color: #999;
+  color: var(--txt-2);
   text-align: left;
   margin: 0.5em 0 2em;
   cursor: pointer;
@@ -156,7 +175,7 @@ input:-webkit-autofill:active  {
   display: flex;
   align-items: center;
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   padding-inline: 0.5em;
   border-bottom: 1px solid #fff;
   border-radius: 0;
@@ -192,8 +211,7 @@ input:-webkit-autofill:active  {
   left: 0;
   width: 100svw;
   padding: 0.5em 1em;
-  background: rgb(99,213,60);
-  background: linear-gradient(270deg, rgba(99,213,60,1) 0%, rgba(192,244,55,1) 100%);
+  background: var(--primary);
   box-shadow: 0 0 5px rgba(0, 30, 50, 0.5);
 }
 
@@ -209,7 +227,7 @@ input:-webkit-autofill:active  {
 }
 
 .header--logo-txt {
-  color: #111111;
+  color: var(--bg-1);
   font-size: 1.6em;
   font-weight: 800;
   line-height: 1;
@@ -257,7 +275,7 @@ main {
   bottom: 0;
   left: 0;
   width: 100svw;
-  background: #111;
+  background: var(--bg-1);
   border-top: 1px solid #333;
   padding: 0.5em 0;
 }
@@ -281,7 +299,7 @@ main {
   justify-content: center;
   align-items: center;
   margin-inline: auto;
-  color: #111;
+  color: var(--bg-1);
   background-color: #666;
 }
 
@@ -296,20 +314,20 @@ main {
 }
 
 .navBar--li:hover a {
-  color: #90e43a;
+  color: var(--primary);
 }
 
 .navBar--li:hover .navBar--icon {
-  background-color: #90e43a;
+  background-color: var(--primary);
 }
 
 /* navLink */
 .navlink-active .navBar--icon {
-  background: #90e43a;
+  background: var(--primary);
 }
 
 .navlink-active .navbar--a {
-  color: #90e43a;
+  color: var(--primary);
 }
 
 /* Find friends */
@@ -400,7 +418,7 @@ main {
 
 .new-exercise-modal input {
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   border: none;
   padding: 0.5em;
   border-radius: 5px;
@@ -409,7 +427,7 @@ main {
 .new-exercise-modal select {
   width: 100%;
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   padding: 0.5em;
   margin-bottom: 1em;
 }
@@ -425,7 +443,7 @@ main {
 
 .new-exercise-modal details form {
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   padding: 0.5em;
 }
 
@@ -505,7 +523,7 @@ main {
 /* */
 
 .exercise--caret {
-  color: #999999;
+  color: var(--txt-2);
   margin-left: 0.5em;
 }
 
@@ -532,7 +550,7 @@ main {
   display: flex;
   align-items: center;
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   padding-inline: 0.5em;
   border: 1px solid #555;
   border-radius: 1rem;
@@ -578,7 +596,7 @@ main {
 }
 
 .workout-card--exercise-li {
-  color: #999;
+  color: var(--txt-2);
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #555;
@@ -645,17 +663,11 @@ a {
 
 .link {
   font-weight: 400;
-  color: #bbb;
+  color: var(--txt-2);
 }
 
 .link:hover {
   color: #fafafa;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -664,7 +676,7 @@ h1 {
 }
 
 p {
-  color: #bbb;
+  color: var(--txt-2);
 }
 
 /* Inputs */
@@ -673,14 +685,14 @@ input {
   width: 100%;
   padding: 0.5em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background: #111;
+  background: var(--bg-1);
   border: 1px solid #555;
   border-radius: 15px;
 }
 
 select {
   color: #fafafa;
-  background: #111;
+  background: var(--bg-1);
   border: 1px solid #555;
   padding: 0.5em;
   border-radius: 15px;
@@ -726,7 +738,7 @@ button {
 
 .btn-txt {
   font-weight: 700;
-  color: #90e43a;
+  color: var(--primary);
   background: none;
   border: none;
   padding: 0;
@@ -748,7 +760,7 @@ button {
 
 .btn-secondary {
   color: #fafafa;
-  background-color: #111;
+  background-color: var(--bg-1);
   border: 1px solid #fafafa;
 }
 
@@ -757,7 +769,7 @@ button {
 }
 
 .btn-tertiary {
-  color: #111;
+  color: var(--bg-1);
   background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -815,15 +827,15 @@ button {
   font-weight: 600;
   height: 30px;
   width: 70px;
-  color: #90e43a;
+  color: var(--primary);
   background: none;
-  border: 1px solid #90e43a;
+  border: 1px solid var(--primary);
   border-radius: 15px;
 }
 
 .btn-follow:hover {
   color: #000;
-  background: #90e43a;
+  background: var(--primary);
   cursor: pointer;
 }
 
@@ -884,11 +896,11 @@ button {
 }
 
 .grey {
-  color: #999;
+  color: var(--txt-2);
 }
 
 .green {
-  color: #90e43a;
+  color: var(--primary);
 }
 
 .red {
@@ -902,7 +914,7 @@ button {
 .search-bar {
   width: 80svw;
   height: 32px;
-  background: #111;
+  background: var(--bg-1);
   border: 1px solid #444;
   border-radius: 16px;
 }

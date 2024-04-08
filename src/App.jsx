@@ -21,7 +21,6 @@ import SignIn from './pages/SignIn'
 import UserActivities from './pages/Profile/UserActivities'
 import UserStats from './pages/Profile/UserStats'
 
-
 // Firebase Firestore
 import { doc, getDoc, getDocs,
   collection } from "firebase/firestore"
@@ -52,6 +51,15 @@ function App() {
 
     fetchUserInDb();
   }, [user]); // This useEffect depends on the `user` state
+
+  useEffect(() => {
+    // Check if userInDb exists and has a truthy 'admin' field
+    if (userInDb && userInDb.admin) {
+      document.body.classList.add('admin');
+    } else {
+      document.body.classList.remove('admin');
+    }
+  }, [userInDb]); // Depend on userInDb to re-evaluate when it changes
 
   // Fetch exercises from database 
   useEffect(() => {
