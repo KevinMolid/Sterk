@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ExerciseCard from '../components/ExerciseCard.jsx'
 import AddExerciseModal from '../components/AddExerciseModal.jsx'
+import Badge from '../components/Badge.jsx'
 
 // Exercises component
 function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
@@ -36,6 +37,11 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
           search
         </span>
         <input className="exercises--input" type="text" placeholder='Search'/>
+      </div>
+      <div className="flex-gap margin-bottom-1">
+        <Badge className="calisthenics pointer">Calisthenics</Badge>
+        <Badge className="cardio pointer">Cardio</Badge>
+        <Badge className="strength pointer">Strength</Badge>
       </div>
       {exercisesHTML}
     </main>

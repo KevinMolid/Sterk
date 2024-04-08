@@ -56,7 +56,11 @@ input:-webkit-autofill:active  {
 }
 
 .calisthenics {
-  background: #356b75;
+  background: #356375;
+}
+
+.cardio {
+  background: #45ac73
 }
 
 /* Exercise list */
@@ -861,7 +865,6 @@ button {
 
 .regular {
   font-weight: 400;
-
 }
 
 .bold {
@@ -882,6 +885,10 @@ button {
 
 .red {
   color: #ff726d;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .search-bar {
