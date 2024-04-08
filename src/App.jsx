@@ -23,15 +23,35 @@ import UserStats from './pages/Profile/UserStats'
 
 
 // Firebase Firestore
-import { getDocs,
+import { doc, getDoc, getDocs,
   collection } from "firebase/firestore"
 
 function App() {
   const [user, setUser] = useState(null)
+  const [userInDb, setUserInDb] = useState(null)
   const [loading, setLoading] = useState(true)
   const [exercises, setExercises] = useState([])
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
+
+  useEffect(() => {
+    const fetchUserInDb = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          setUserInDb(docSnap.data()); // Set userInDb state with fetched data
+        } else {
+          console.log("No such user in db!");
+          // Optionally, handle case where user doesn't exist in db (e.g., create a new document)
+        }
+      } else {
+        setUserInDb(null); // Reset userInDb state when logged out
+      }
+    };
+
+    fetchUserInDb();
+  }, [user]); // This useEffect depends on the `user` state
 
   // Fetch exercises from database 
   useEffect(() => {
@@ -70,7 +90,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, exercises }}>
+    <UserContext.Provider value={{ user, userInDb, setUser, exercises }}>
       <Router>
       <div className="app">
         {!user && <SignIn/>}

@@ -3,7 +3,7 @@ import { Outlet, NavLink } from 'react-router-dom'
 import UserContext from '../UserContext'
 
 export default function ProfileLayout() {
-    const { user, setUser, exercises } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     return (
         <main>

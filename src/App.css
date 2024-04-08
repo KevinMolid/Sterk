@@ -383,10 +383,10 @@ main {
   flex-direction: column;
   color: #fafafa;
   background-color: #222;
-  padding: 2em 1em;
+  padding: 1em;
   border-radius: 10px;
   user-select: none;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 .new-exercise-modal h3 {
