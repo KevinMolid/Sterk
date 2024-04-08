@@ -34,11 +34,11 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
     <main>
       <div className='exercises--heading-wrapper'>
         <h2>Exercises</h2>
-        {userInDb.admin && <button onClick={toggleModal}
+        {userInDb ? userInDb.admin && <button onClick={toggleModal}
           className='btn btn-primary btn-small'>
           {modalExpanded && <i className="fa-solid fa-x"></i>}
           {!modalExpanded && <i className="fa-solid fa-plus"></i>}
-        </button>}
+        </button> : null}
       </div>
       {modalExpanded && <AddExerciseModal toggleModal={toggleModal} handleExerciseAdded={handleExerciseAdded}/>}
       <div className="exercises--input-wrapper">
