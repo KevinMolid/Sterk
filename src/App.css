@@ -46,9 +46,17 @@ input:-webkit-autofill:active  {
 .badge {
   width: fit-content;
   padding: 0.1em 0.8em;
-  background: #75356d;
   border-radius: 5px;
+  background: #444;
   text-transform: capitalize;
+}
+
+.strength {
+  background: #75356d;
+}
+
+.calisthenics {
+  background: #356b75;
 }
 
 /* Exercise list */
