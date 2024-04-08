@@ -48,7 +48,7 @@ export default function ExerciseDetail(){
                     <Badge>{exercise.category}</Badge>
                 </div>
                 <p><span className='bold white'>Primary:</span> {exercise.primaryMuscles.join(', ')}</p>
-                <p><span className='bold white'>Secondary:</span> {exercise.secondaryMuscles.join(', ')}</p>
+                {exercise.secondaryMuscles[0] && <p><span className='bold white'>Secondary:</span> {exercise.secondaryMuscles.join(', ')}</p>}
             </main>
         )
     )
