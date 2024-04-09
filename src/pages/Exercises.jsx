@@ -47,7 +47,7 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
         </span>
         <input className="exercises--input" type="text" placeholder='Search'/>
       </div>
-      <div className="flex-gap margin-bottom-1">
+      <div className="align-center flex-wrap flex-gap-half margin-bottom-1">
         <Link to="?category=calisthenics">
           <Badge className="calisthenics pointer">Calisthenics</Badge>
         </Link>
@@ -56,6 +56,9 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
         </Link>
         <Link to="?category=strength">
           <Badge className="strength pointer">Strength</Badge>
+        </Link>
+        <Link to=".">
+          <p className="pointer">Clear filters</p>
         </Link>
       </div>
       {exercisesHTML}

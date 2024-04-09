@@ -840,6 +840,10 @@ button {
 }
 
 /* Utility */
+.align-center {
+  align-items: center;
+}
+
 .border-bottom-1 {
   border-bottom: 1px solid #555;
 }
@@ -847,6 +851,15 @@ button {
 .flex-gap {
   display: flex;
   gap: 1em;
+}
+
+.flex-gap-half {
+  display: flex;
+  gap: 0.5em;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .flex-space {
