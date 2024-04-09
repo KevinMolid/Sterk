@@ -35,12 +35,14 @@ export default function ExerciseDetail(){
         }
     }
 
+    const search = location.state?.search || ''
+
     return (
         exercise && (
             <main>
                 <div className='margin-bottom-1'>
                     <Link className="link" 
-                        to={location.state.search ? `..?${location.state.search}` : '..'}
+                        to={`..${search}`}
                         relative="path" >
                         <i className="fa-solid fa-arrow-left"></i> Back to exercises
                     </Link>
