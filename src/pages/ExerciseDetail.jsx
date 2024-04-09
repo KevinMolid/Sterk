@@ -36,6 +36,7 @@ export default function ExerciseDetail(){
     }
 
     const search = location.state?.search || ''
+    const searchCategory = location.state?.category
 
     return (
         exercise && (
@@ -44,7 +45,7 @@ export default function ExerciseDetail(){
                     <Link className="link" 
                         to={`..${search}`}
                         relative="path" >
-                        <i className="fa-solid fa-arrow-left"></i> Back to exercises
+                        <i className="fa-solid fa-arrow-left"></i> {`Back to ${searchCategory ? searchCategory+' ': ''}exercises`}
                     </Link>
                 </div>
                 <div className='flex-space margin-bottom-1'>
