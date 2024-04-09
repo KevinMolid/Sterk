@@ -827,12 +827,17 @@ button {
   background: none;
   border: 1px solid var(--primary);
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .btn-follow:hover {
   color: #000;
   background: var(--primary);
-  cursor: pointer;
+}
+
+.following {
+  color: #000;
+  background: var(--primary);
 }
 
 /* Utility */

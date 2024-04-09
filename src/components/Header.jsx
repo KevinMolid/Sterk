@@ -12,7 +12,7 @@ function Header(props) {
                 </div>
             </Link>
             <div className='header--btns'>
-                <Link to='/findfriends'>
+                <Link to='/users'>
                     <button className='btn btn-tertiary btn-small'><i className="fa-solid fa-magnifying-glass"></i></button>
                 </Link>
                 <button className='btn btn-tertiary btn-small' onClick={props.signOut}><i className="fa-solid fa-arrow-right-from-bracket"></i></button>

@@ -5,7 +5,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../config.jsx'
 
 export default function UserStats() {
-    const { user, setUser, exercises } = useContext(UserContext)
+    const { user, exercises } = useContext(UserContext)
     const [prModalExpanded, setPrModalExpanded] = useState(false)
     const [prs, setPrs] = useState([])
     const [updatePrsFlag, setUpdatePrsFlag] = useState(false)

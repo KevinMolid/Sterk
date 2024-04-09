@@ -11,7 +11,8 @@ import ProfileLayout from './components/ProfileLayout'
 
 // Pages
 import Home from './pages/Home'
-import FindFriends from './pages/Users.jsx'
+import Users from './pages/Users.jsx'
+import UserDetail from './pages/UserDetail'
 import Exercises from './pages/Exercises'
 import ExerciseDetail from './pages/ExerciseDetail'
 import Workouts from './pages/Workouts'
@@ -123,7 +124,8 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="findfriends" element={<FindFriends />} />
+              <Route path="users" element={<Users />} />
+              <Route path="users/:id" element={<UserDetail />} />
               <Route path="exercises" element={<Exercises 
                 refreshFlag={refreshExercises}
                 handleExerciseAdded={handleExerciseAdded}
