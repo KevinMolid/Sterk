@@ -11,7 +11,7 @@ import ProfileLayout from './components/ProfileLayout'
 
 // Pages
 import Home from './pages/Home'
-import FindFriends from './pages/FindFriends'
+import FindFriends from './pages/Users.jsx'
 import Exercises from './pages/Exercises'
 import ExerciseDetail from './pages/ExerciseDetail'
 import Workouts from './pages/Workouts'
@@ -30,38 +30,52 @@ import { doc, getDoc, getDocs,
 function App() {
   const [user, setUser] = useState(null)
   const [userInDb, setUserInDb] = useState(null)
+  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [exercises, setExercises] = useState([])
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
 
+  // Fetch user in firestore
   useEffect(() => {
     const fetchUserInDb = async () => {
       if (user) {
-        const userRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(userRef);
+        const userRef = doc(db, "users", user.uid)
+        const docSnap = await getDoc(userRef)
         if (docSnap.exists()) {
-          setUserInDb(docSnap.data()); // Set userInDb state with fetched data
+          setUserInDb(docSnap.data()) // Set userInDb state with fetched data
         } else {
-          console.log("No such user in db!");
+          console.log("No such user in db!")
           // Optionally, handle case where user doesn't exist in db (e.g., create a new document)
         }
       } else {
-        setUserInDb(null); // Reset userInDb state when logged out
+        setUserInDb(null) // Reset userInDb state when logged out
       }
-    };
+    }
 
-    fetchUserInDb();
-  }, [user]); // This useEffect depends on the `user` state
+    fetchUserInDb()
+  }, [user]) // This useEffect depends on the `user` state
 
+  // Check if admin
   useEffect(() => {
     // Check if userInDb exists and has a truthy 'admin' field
     if (userInDb && userInDb.admin) {
-      document.body.classList.add('admin');
+      document.body.classList.add('admin')
     } else {
-      document.body.classList.remove('admin');
+      document.body.classList.remove('admin')
     }
-  }, [userInDb]); // Depend on userInDb to re-evaluate when it changes
+  }, [userInDb]) // Depend on userInDb to re-evaluate when it changes
+
+  // Fetch users from firestore
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const querySnapshot = await getDocs(collection(db, "users"))
+      const usersList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      setUsers(usersList)
+    }
+
+    fetchUsers()
+  }, [])
 
   // Fetch exercises from database 
   useEffect(() => {
@@ -100,7 +114,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, userInDb, setUser, exercises }}>
+    <UserContext.Provider value={{ user, userInDb, setUser, users, exercises }}>
       <Router>
       <div className="app">
         {!user && <SignIn/>}

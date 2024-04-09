@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../config.jsx'; // Ensure this points to your Firestore config
+import { React, useContext } from 'react'
+import UserContext from '../UserContext.jsx'
 
-function FindFriends() {
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      const usersList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setUsers(usersList);
-    };
-
-    fetchUsers();
-  }, []);
+export default function Users() {
+  const { users } = useContext(UserContext)
 
   return (
     <main>
@@ -37,7 +27,5 @@ function FindFriends() {
         <p>There are no friends here... Booo!</p>
       )}
     </main>
-  );
+  )
 }
-
-export default FindFriends;
