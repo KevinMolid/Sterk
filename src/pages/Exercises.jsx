@@ -57,9 +57,9 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
         <Link to="?category=strength">
           <Badge className="strength pointer">Strength</Badge>
         </Link>
-        <Link to=".">
+        {categoryFilter && <Link to=".">
           <p className="pointer">Clear filters</p>
-        </Link>
+        </Link>}
       </div>
       {exercisesHTML}
     </main>
