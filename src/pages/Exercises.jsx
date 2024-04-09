@@ -49,13 +49,19 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
       </div>
       <div className="align-center flex-wrap flex-gap-half margin-bottom-1">
         <Link to="?category=calisthenics">
-          <Badge className="calisthenics pointer">Calisthenics</Badge>
+          <Badge className={`${categoryFilter === "calisthenics" && "calisthenics"} pointer`}>
+            Calisthenics
+          </Badge>
         </Link>
         <Link to="?category=cardio">
-          <Badge className="cardio pointer">Cardio</Badge>
+          <Badge className={`${categoryFilter === "cardio" && "cardio"} pointer`}>
+            Cardio
+          </Badge>
         </Link>
         <Link to="?category=strength">
-          <Badge className="strength pointer">Strength</Badge>
+          <Badge className={`${categoryFilter === "strength" && "strength"} pointer`}>
+            Strength
+          </Badge>
         </Link>
         {categoryFilter && <Link to=".">
           <p className="pointer">Clear filters</p>
