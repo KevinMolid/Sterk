@@ -24,6 +24,7 @@ function Exercises({ refreshFlag, exercises, handleExerciseAdded }) {
     return (
       <Link key={exercise.id} 
         to={`/exercises/${exercise.id}`}
+        state={{ search: searchParams.toString() }}
         aria-label={`view details for ${exercise.name}`} >
         <ExerciseCard exercise={exercise} />
       </Link>

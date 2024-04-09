@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from 'react'
-import { useParams, Link } from "react-router-dom"
+import { Link, useParams, useLocation } from "react-router-dom"
 import { doc, getDoc } from "firebase/firestore"
 import Badge from '../components/Badge'
 import { db } from '../config'
 
 export default function ExerciseDetail(){
+    const location = useLocation()
     const [exercise, setExercise] = useState('')
     const exerciseId = useParams().id
 
@@ -38,7 +39,8 @@ export default function ExerciseDetail(){
         exercise && (
             <main>
                 <div className='margin-bottom-1'>
-                    <Link className="link" to=".."
+                    <Link className="link" 
+                        to={location.state.search ? `..?${location.state.search}` : '..'}
                         relative="path" >
                         <i className="fa-solid fa-arrow-left"></i> Back to exercises
                     </Link>
