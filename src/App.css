@@ -15,18 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 
   --txt-1: #fafafa;
-  --txt-2: #bbb;
+  --txt-2: #b6ccd3;
   --bg-1: #191919;
   --bg-2: #292929;
   --primary: #90e43a;
 }
 
 .admin {
-  --txt-1: #fafafa;
-  --txt-2: #b6ccd3;
-  --bg-1: #191919;
-  --bg-2: #292929;
-  --primary: #ecca2f;
+  --primary: #e96a6a;
 }
 
 body {
