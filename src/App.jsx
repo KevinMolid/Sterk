@@ -20,6 +20,8 @@ import Progress from './pages/Progress'
 import SignIn from './pages/SignIn'
 import UserActivities from './pages/Profile/UserActivities'
 import UserStats from './pages/Profile/UserStats'
+import NotFound from './pages/NotFound'
+
 
 // Firebase Firestore
 import { doc, getDoc, getDocs,
@@ -124,6 +126,9 @@ function App() {
               </Route>
 
               <Route path="progress" element={<Progress />} />
+
+              {/* 404 */}
+              <Route path="*" element={<NotFound />}/>
             </Route>
           </Routes>
         </>
