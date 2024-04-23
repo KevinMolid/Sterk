@@ -38,6 +38,10 @@ body {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 /* */
 /* Override background color on input autofill */
 input:-webkit-autofill,
@@ -86,7 +90,30 @@ input:-webkit-autofill:active  {
   z-index: 1;
   width: 100svw;
   height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr;
   background: var(--bg-1);
+  padding: 2em;
+}
+
+.exercise-list--heading{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.exercise-list ul{
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.exercise-list ul li{
+  margin-bottom: .5em;
+}
+
+.exercise-list ul li:hover{
+  background: var(--bg-2);
+  cursor: pointer;
 }
 
 /* SignIn */
@@ -282,7 +309,6 @@ main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding-inline: 0.5em;
-  list-style-type: none;
   justify-content: space-evenly;
 }
 

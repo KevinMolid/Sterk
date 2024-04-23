@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import { React, useState, useContext } from 'react'
 import Exercise from '../components/ChooseExercise.jsx'
 import ExerciseList from '../components/ExerciseList.jsx'
+import UserContext from '../UserContext'
 
-function CreateWorkout(exercisesFromDb) {
+
+function CreateWorkout() {
     const [workoutName, setWorkoutName] = useState('New workout')
     const [description, setDescription] = useState('')
-    const [availableExercises, setAvailableExercises] = useState(exercisesFromDb)
-    const [exercises, setExercises] = useState([])
+    const [workoutExercises, setWorkoutExercises] = useState([])
     const [choosingExercise, setChoosingExercise] = useState(false)
+    const { exercises } = useContext(UserContext)
 
     // Handle changes in input fields
     const handleNameChange = (event) => {
@@ -18,22 +20,35 @@ function CreateWorkout(exercisesFromDb) {
       setDescription(event.target.value)
     }
 
-    const addExercise = (event) => {
-      event.preventDefault()
+    const addExercise = (exercise) => {
       const newExercise = {
-        id: exercises.length.toString(), // Simple ID generation
+        exercise: exercise.id,
+        name: exercise.name,
+        id: workoutExercises.length.toString(), // Simple ID generation
         sets: [
           { reps: 10, weight: 40 }, // Example set
           // Add more sets as needed
         ]
       }
 
-      setExercises(prevExercises => [...prevExercises, newExercise])
+      setWorkoutExercises(prevExercises => [...prevExercises, newExercise])
+      setChoosingExercise(prevState => !prevState)
+    }
+
+    const chooseExercise = (event) => {
+      event.preventDefault()
+      setChoosingExercise(prevState => !prevState)
+    }
+
+    function addWorkout(){
+      console.log(workoutName)
+      console.log(description)
+      console.log(workoutExercises)
     }
 
     return (
       <main>
-        {choosingExercise && (<ExerciseList exercisesFromDb={exercisesFromDb}/>)}
+        {choosingExercise && (<ExerciseList addExercise={addExercise} />)}
         <form>
             <input className="create-workout--workout-name margin-bottom-1" 
                 type="text" 
@@ -43,17 +58,30 @@ function CreateWorkout(exercisesFromDb) {
             <textarea id="workout-description" 
               value={description}
               onChange={handleDescriptionChange}></textarea>
-            <button className='btn-txt' onClick={addExercise}>Add exercise</button>
+            <button className='btn-txt margin-bottom-1' 
+              onClick={chooseExercise}>
+                Add Exercise
+              </button>
         </form>
+
         {/* Render exercises */}
-        {exercises.map((exercise, index) => (
+        {workoutExercises.map((exercise, index) => (
           <div key={index}>
-            <h3>Exercise {index + 1}</h3>
+            <div className='flex-gap'>
+              <h3>{exercise.name}</h3>
+              <button className='btn-txt' onClick={chooseExercise}>Add Set</button>
+            </div>
             {exercise.sets.map((set, setIndex) => (
               <p key={setIndex}>Set {setIndex + 1}: {set.reps} reps at {set.weight} lbs</p>
             ))}
           </div>
         ))}
+
+        <button 
+          className='btn btn-primary'
+          onClick={addWorkout}>
+            Publish workout
+        </button>
       </main>
     )
   }
