@@ -1,8 +1,12 @@
-import React from 'react'
+import { React, useContext } from 'react'
 import WorkoutCard from '/src/components/WorkoutCard.jsx'
 import { Link } from 'react-router-dom'
+import UserContext from '../UserContext'
+
 
 function Workouts() {
+  const { workouts } = useContext(UserContext)
+
     return (
       <main>
         <div className='workouts--heading-wrapper'>
@@ -17,9 +21,16 @@ function Workouts() {
           </span>
           <input className="exercises--input" type="text" placeholder='Search'/>
         </div>
-        <WorkoutCard />
-        <WorkoutCard />
-        <WorkoutCard />
+
+        {workouts.map(workout => {
+          return (
+            <WorkoutCard key={workout.id} 
+              name={workout.name} 
+              category={workout.category}
+              exercises={workout.exercises}
+              />
+          )
+        })}
       </main>
     )
   }

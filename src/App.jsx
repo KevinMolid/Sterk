@@ -33,9 +33,14 @@ function App() {
   const [userInDb, setUserInDb] = useState(null)
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
+
   const [exercises, setExercises] = useState([])
   // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
+
+  const [workouts, setWorkouts] = useState([])
+  // State to trigger refresh of exercise list
+  const [refreshWorkouts, setRefreshWorkouts] = useState(false)
 
   // Fetch user in firestore
   useEffect(() => {
@@ -97,6 +102,16 @@ function App() {
     fetchExercises()
   }, [refreshExercises]) // re-fetches when flagged
 
+  // Fetch workouts from database 
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      const querySnapshot = await getDocs(collection(db, "workouts"))
+      const workoutsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      setWorkouts(workoutsList)
+    }
+    fetchWorkouts()
+  }, [refreshWorkouts]) // re-fetches when flagged
+
   // Callback function to trigger refresh
   const handleExerciseAdded = () => {
     setRefreshExercises(prev => !prev)
@@ -115,7 +130,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, userInDb, setUser, users, exercises }}>
+    <UserContext.Provider value={{ user, userInDb, setUser, users, exercises, workouts }}>
       <Router>
       <div className="app">
         {!user && <SignIn/>}
