@@ -1,15 +1,12 @@
-import { React, useState, useContext } from 'react'
-import Exercise from '../components/ChooseExercise.jsx'
+import { React, useState } from 'react'
 import ExerciseList from '../components/ExerciseList.jsx'
-import UserContext from '../UserContext'
-
+import { Link } from 'react-router-dom'
 
 function CreateWorkout() {
     const [workoutName, setWorkoutName] = useState('New workout')
     const [description, setDescription] = useState('')
     const [workoutExercises, setWorkoutExercises] = useState([])
     const [choosingExercise, setChoosingExercise] = useState(false)
-    const { exercises } = useContext(UserContext)
 
     // Handle changes in input fields
     const handleNameChange = (event) => {
@@ -49,6 +46,12 @@ function CreateWorkout() {
     return (
       <main>
         {choosingExercise && (<ExerciseList addExercise={addExercise} />)}
+        <div className='margin-bottom-1'>
+          <Link className="link" 
+              to={`/workouts`}>
+              <i className="fa-solid fa-arrow-left"></i> {`Back to workouts`}
+          </Link>
+        </div>
         <form>
             <input className="create-workout--workout-name margin-bottom-1" 
                 type="text" 
@@ -78,7 +81,7 @@ function CreateWorkout() {
         ))}
 
         <button 
-          className='btn btn-primary'
+          className='btn btn-primary margin-top-1'
           onClick={addWorkout}>
             Publish workout
         </button>
