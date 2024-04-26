@@ -636,6 +636,12 @@ main {
   outline: none;
 }
 
+.set-input {
+  display: inline-flex;
+  text-align: center;
+  width: 50px;
+}
+
 /* Profile */
 .profile--heading {
   margin-bottom: 0.5em;

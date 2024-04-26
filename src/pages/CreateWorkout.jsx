@@ -23,13 +23,45 @@ function CreateWorkout() {
         name: exercise.name,
         id: workoutExercises.length.toString(), // Simple ID generation
         sets: [
-          { reps: 10, weight: 40 }, // Example set
+          { reps: 10, weight: 0 }, // Example set
           // Add more sets as needed
         ]
       }
-
       setWorkoutExercises(prevExercises => [...prevExercises, newExercise])
       setChoosingExercise(prevState => !prevState)
+    }
+
+    const addSet = (exerciseId) => {
+      setWorkoutExercises(currentExercises => {
+        return currentExercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                return {
+                    ...exercise,
+                    sets: [
+                        ...exercise.sets,
+                        { reps: 10, weight: 40 } // Default values for the new set
+                    ]
+                }
+            }
+            return exercise
+        })
+    })}
+
+    const updateSet = (exerciseId, setIndex, updatedValues) => {
+        setWorkoutExercises(currentExercises => {
+            return currentExercises.map(exercise => {
+                if (exercise.id === exerciseId) {
+                    const updatedSets = exercise.sets.map((set, index) => {
+                        if (index === setIndex) {
+                            return { ...set, ...updatedValues }
+                        }
+                        return set
+                    })
+                    return { ...exercise, sets: updatedSets }
+                }
+                return exercise
+            })
+        })
     }
 
     const chooseExercise = (event) => {
@@ -68,17 +100,36 @@ function CreateWorkout() {
         </form>
 
         {/* Render exercises */}
-        {workoutExercises.map((exercise, index) => (
-          <div key={index}>
-            <div className='flex-gap'>
-              <h3>{exercise.name}</h3>
-              <button className='btn-txt' onClick={chooseExercise}>Add Set</button>
+        {workoutExercises.map((exercise, index) => {
+            return (
+              <div key={index}>
+              <div className='flex-gap'>
+                <h3>{exercise.name}</h3>
+                <button className='btn-txt' onClick={() => addSet(exercise.id)}>Add Set</button>
+              </div>
+
+              {exercise.sets.map((set, setIndex) => (
+                  <div key={setIndex} className="set">
+                      Set {setIndex + 1}: 
+                      <input
+                          className='set-input'
+                          type="number"
+                          value={set.reps}
+                          onChange={(e) => updateSet(exercise.id, setIndex, { reps: parseInt(e.target.value, 10) })}
+                          style={{ marginInline: '10px' }}
+                      /> reps of
+                      <input
+                          className='set-input'
+                          type="number"
+                          value={set.weight}
+                          onChange={(e) => updateSet(exercise.id, setIndex, { weight: parseInt(e.target.value, 10) })}
+                          style={{ marginInline: '10px' }}
+                      /> kg
+                  </div>
+              ))}
+
             </div>
-            {exercise.sets.map((set, setIndex) => (
-              <p key={setIndex}>Set {setIndex + 1}: {set.reps} reps at {set.weight} lbs</p>
-            ))}
-          </div>
-        ))}
+        )})}
 
         <button 
           className='btn btn-primary margin-top-1'
