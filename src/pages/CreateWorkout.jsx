@@ -2,6 +2,9 @@ import { React, useState } from 'react'
 import ExerciseList from '../components/ExerciseList.jsx'
 import { Link } from 'react-router-dom'
 
+import { collection, addDoc } from "firebase/firestore"
+import { db } from '../config'
+
 function CreateWorkout() {
     const [workoutName, setWorkoutName] = useState('New workout')
     const [description, setDescription] = useState('')
@@ -39,7 +42,7 @@ function CreateWorkout() {
                     ...exercise,
                     sets: [
                         ...exercise.sets,
-                        { reps: 10, weight: 40 } // Default values for the new set
+                        { reps: 10, weight: 0 } // Default values for the new set
                     ]
                 }
             }
@@ -73,6 +76,31 @@ function CreateWorkout() {
       console.log(workoutName)
       console.log(description)
       console.log(workoutExercises)
+    }
+
+    const addWorkoutToDatabase = async () => {
+        const workoutData = {
+            name: workoutName,
+            description: description,
+            exercises: workoutExercises.map(exercise => ({
+                exerciseId: exercise.exercise,
+                name: exercise.name,
+                sets: exercise.sets.map(set => ({
+                    reps: set.reps,
+                    weight: set.weight
+                }))
+            }))
+        }
+    
+        try {
+            const docRef = await addDoc(collection(db, "workouts"), workoutData)
+            console.log("Document written with ID: ", docRef.id)
+            alert('Workout successfully added!')
+            // Optional: Redirect or clear form here
+        } catch (e) {
+            console.error("Error adding document: ", e)
+            alert('Failed to add workout.')
+        }
     }
 
     return (
@@ -133,7 +161,7 @@ function CreateWorkout() {
 
         <button 
           className='btn btn-primary margin-top-1'
-          onClick={addWorkout}>
+          onClick={addWorkoutToDatabase}>
             Publish workout
         </button>
       </main>

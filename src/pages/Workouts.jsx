@@ -26,7 +26,7 @@ function Workouts() {
           return (
             <WorkoutCard key={workout.id} 
               name={workout.name} 
-              category={workout.category}
+              description={workout.description}
               exercises={workout.exercises}
               />
           )

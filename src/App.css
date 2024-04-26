@@ -607,10 +607,6 @@ main {
   margin-bottom: 0.5em;
 }
 
-.workout-card--category {
-  margin-bottom: 1em;
-}
-
 .workout-card--exercises-ul {
   list-style-type: none;
   padding: 0;
@@ -639,7 +635,7 @@ main {
 .set-input {
   display: inline-flex;
   text-align: center;
-  width: 50px;
+  width: 60px;
 }
 
 /* Profile */
@@ -915,6 +911,10 @@ button {
 
 .margin-top-1 {
   margin-top: 1rem;
+}
+
+.margin-bottom-half {
+  margin-bottom: .5rem;
 }
 
 .margin-bottom-1 {
