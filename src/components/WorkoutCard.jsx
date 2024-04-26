@@ -4,11 +4,11 @@ import UserContext from '../UserContext'
 
 function WorkoutCard(props) {
     const { exercises } = useContext(UserContext)
-    
+
     return (
         <div className='workout-card'>
             <h3>{props.name}</h3>
-            <p className='margin-bottom-half'>{props.description}</p>
+            <p className='margin-bottom-half small'>{props.description}</p>
 
             <ul className='workout-card--exercises-ul'>
                 {props.exercises.map(exercise => {
@@ -20,7 +20,7 @@ function WorkoutCard(props) {
                     const weight = exercise.sets ? exercise.sets[0].weight : ""
 
                     return(
-                        <li key={exercise.exerciseId} className='workout-card--exercise-li'>
+                        <li key={exercise.exerciseId} className='workout-card--exercise-li white'>
                             <span className='bold'>{exName}</span> <span>{sets} x {reps} {weight}kg</span>
                         </li>
                     )
