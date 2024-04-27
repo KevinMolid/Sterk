@@ -15,6 +15,7 @@ import Users from './pages/Users.jsx'
 import UserDetail from './pages/UserDetail'
 import Exercises from './pages/Exercises'
 import ExerciseDetail from './pages/ExerciseDetail'
+import Workout from './pages/Workout'
 import Workouts from './pages/Workouts'
 import CreateWorkout from './pages/CreateWorkout'
 import Progress from './pages/Progress'
@@ -34,13 +35,16 @@ function App() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
 
+  // Exercises
   const [exercises, setExercises] = useState([])
-  // State to trigger refresh of exercise list
   const [refreshExercises, setRefreshExercises] = useState(false)
 
+  // Workouts
   const [workouts, setWorkouts] = useState([])
-  // State to trigger refresh of exercise list
   const [refreshWorkouts, setRefreshWorkouts] = useState(false)
+
+  // Active workout
+  const [activeWorkout, setActiveWorkout] = useState({})
 
   // Fetch user in firestore
   useEffect(() => {
@@ -130,7 +134,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, userInDb, setUser, users, exercises, workouts }}>
+    <UserContext.Provider value={{ user, setUser, userInDb, users, exercises, workouts, activeWorkout, setActiveWorkout }}>
       <Router>
       <div className="app">
         {!user && <SignIn/>}
@@ -146,6 +150,7 @@ function App() {
                 handleExerciseAdded={handleExerciseAdded}
                 exercises={exercises} />} />
               <Route path="exercises/:id" element={<ExerciseDetail />} />
+              <Route path="workout" element={<Workout />} />
               <Route path="workouts" element={<Workouts />} />
               <Route path="createworkout" element={<CreateWorkout 
                 exercisesFromDb={exercises}/>} />

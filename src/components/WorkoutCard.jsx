@@ -1,9 +1,15 @@
 import { React, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import UserContext from '../UserContext'
 
 
 function WorkoutCard(props) {
-    const { exercises } = useContext(UserContext)
+    const { exercises, setActiveWorkout } = useContext(UserContext)
+
+    function startWorkout(workout) {
+        console.log(`starting workout: ${workout.name}`)
+        setActiveWorkout(workout)
+    }
 
     return (
         <div className='workout-card'>
@@ -27,10 +33,13 @@ function WorkoutCard(props) {
                 })}
             </ul>
 
-            <button className='btn btn-primary'>
-                Start workout
-                <i className="btn-icon fa-solid fa-chevron-right"></i>
-            </button>
+            <Link to ='/workout' >
+                <button className='btn btn-primary'
+                    onClick={() => startWorkout(props)}>
+                    Start workout
+                    <i className="btn-icon fa-solid fa-chevron-right"></i>
+                </button>
+            </Link>
         </div>
     )
 }

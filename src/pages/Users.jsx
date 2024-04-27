@@ -1,7 +1,7 @@
 import { React, useContext, useState, useEffect } from 'react'
 import UserContext from '../UserContext.jsx'
 import { Link } from 'react-router-dom'
-import { doc, updateDoc, arrayUnion } from "firebase/firestore"
+import { doc, updateDoc } from "firebase/firestore"
 import { db } from '../config.jsx'
 
 export default function Users() {
