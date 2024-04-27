@@ -16,7 +16,7 @@ export default function Workout(){
             <h2 className='margin-bottom-1'>{activeWorkout.name}</h2>
             {activeWorkout.exercises && activeWorkout.exercises.map(exercise => {
                 return (
-                    <div key=>
+                    <div key={exercise.name}>
                         <h3>{exercise.name}</h3>
                     </div>
             )})}
