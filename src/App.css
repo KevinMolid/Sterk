@@ -847,6 +847,7 @@ button {
 }
 
 .btn-follow {
+  line-height: 1;
   font-size: 0.7em;
   font-weight: 600;
   height: 30px;
@@ -866,6 +867,11 @@ button {
 .following {
   color: #000;
   background: var(--primary);
+}
+
+.following:hover {
+  color: var(--primary);
+  background: none;
 }
 
 /* Utility */
