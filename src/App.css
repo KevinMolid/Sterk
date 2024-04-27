@@ -869,11 +869,6 @@ button {
   background: var(--primary);
 }
 
-.following:hover {
-  color: var(--primary);
-  background: none;
-}
-
 /* Utility */
 .align-center {
   align-items: center;
