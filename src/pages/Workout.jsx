@@ -18,10 +18,21 @@ export default function Workout(){
             {activeWorkout.exercises && activeWorkout.exercises.map(exercise => {
                 return (
                     <div key={exercise.name} className='margin-bottom-1'>
-                        <h3>{exercise.name}</h3>
+                        <h3 className='margin-bottom-half'>{exercise.name}</h3>
+                        <div className='grid-4-col margin-bottom-half'>
+                            <p className='white small uppercase'>set</p>
+                            <p className='white small uppercase'>kg</p>
+                            <p className='white small uppercase'>reps</p>
+                            <div className='width-32'></div>
+                        </div>
                         {exercise.sets.map((set, index) => {
                             return(
-                                <p key={exercise.name + index}>{set.reps} x {set.weight}kg</p>
+                                <div className='grid-4-col margin-bottom-half' key={exercise.name + index}>
+                                    <p>{index + 1}</p>
+                                    <p>{set.weight}</p>
+                                    <p>{set.reps}</p>
+                                    <button className='btn-complete'><i className="fa-solid fa-check"></i></button>
+                                </div>
                             )
                         })}
                     </div>

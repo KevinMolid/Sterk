@@ -18,6 +18,7 @@
   --txt-2: #b6ccd3;
   --bg-1: #191919;
   --bg-2: #292929;
+  --bg-2-hover: #444;
   --primary: #90e43a;
 }
 
@@ -263,6 +264,9 @@ input:-webkit-autofill:active  {
 
 main {
   padding: 5rem 1rem 8rem 1rem;
+  max-width: 500px;
+  margin-inline: auto;
+
 }
 
 /* */
@@ -768,6 +772,21 @@ button {
   padding: 0;
 }
 
+.btn-complete {
+  color: var(--txt-2);
+  background: var(--bg-2);
+  border: none;
+  border-radius: 5px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.btn-complete:hover {
+  color: var(--txt-1);
+  background: var(--bg-2-hover);
+}
+
 .btn-img {
   width: 35px;
   margin-left: -5px;
@@ -870,6 +889,10 @@ button {
 }
 
 /* Utility */
+.width-32 {
+  width: 32px;
+}
+
 .align-center {
   align-items: center;
 }
@@ -910,6 +933,12 @@ button {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-4-col {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+}
+
 .margin-top-1 {
   margin-top: 1rem;
 }
@@ -932,6 +961,10 @@ button {
 
 .large {
   font-size: 1.2rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .regular {
