@@ -936,8 +936,9 @@ button {
 .grid-4-col {
   width: 100%;
   display: grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr) auto;
+  align-items: center; 
+  grid-template-columns: 40px repeat(2, 1fr) 40px;
+  gap: 1rem;
 }
 
 .margin-top-1 {

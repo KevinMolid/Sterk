@@ -29,8 +29,8 @@ export default function Workout(){
                             return(
                                 <div className='grid-4-col margin-bottom-half' key={exercise.name + index}>
                                     <p>{index + 1}</p>
-                                    <p>{set.weight}</p>
-                                    <p>{set.reps}</p>
+                                    <input type="number" value={set.weight}/>
+                                    <input type="number" value={set.reps}/>
                                     <button className='btn-complete'><i className="fa-solid fa-check"></i></button>
                                 </div>
                             )
