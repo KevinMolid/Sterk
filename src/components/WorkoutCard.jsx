@@ -8,6 +8,7 @@ function WorkoutCard(props) {
 
     function startWorkout(workout) {
         console.log(`starting workout: ${workout.name}`)
+        localStorage.setItem('activeWorkout', JSON.stringify(workout))
         setActiveWorkout(workout)
     }
 

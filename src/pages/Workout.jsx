@@ -5,13 +5,34 @@ import UserContext from '../UserContext.jsx'
 export default function Workout(){
     const { activeWorkout } = useContext(UserContext)
     const [ exercises, setExercises ] = useState(activeWorkout.exercises)
+    const [ sessionData, setSessionData ] = useState(exercises.map(exercise => {
+        return {
+            name: exercise.name,
+            sets: exercise.sets
+        }
+    }))
 
     useEffect(() => {
         setExercises(activeWorkout.exercises)
     },  [activeWorkout])
 
-    function handleInput(e) {
-        e.target.value = e.target.value
+    function handleInput(exerciseIndex, setIndex, key, value) {
+        setSessionData(prevData => prevData.map((exercise, index) => {
+            if (index === exerciseIndex) {
+                const updatedSets = exercise.sets.map((set, idx) => {
+                    if (idx === setIndex) {
+                        return { ...set, [key]: value }
+                    }
+                    return set
+                })
+                return { ...exercise, sets: updatedSets }
+            }
+            return exercise
+        }))
+    }
+
+    function handleCompleted() {
+        console.log(sessionData)
     }
 
     function finishWorkout() {
@@ -21,9 +42,6 @@ export default function Workout(){
     function cancelWorkout() {
         console.log('Workout canceled!')
     }
-
-
-
 
     return (
         <main>
@@ -35,7 +53,7 @@ export default function Workout(){
                 <button className='btn-txt' onClick={finishWorkout}>Finish workout</button>
             </div>
             <h2 className='margin-bottom-1'>{activeWorkout.name}</h2>
-            {exercises && exercises.map(exercise => {
+            {sessionData && sessionData.map((exercise, exerciseIndex) => {
                 return (
                     <div key={exercise.name} className='margin-bottom-1'>
                         <h3 className='margin-bottom-half'>{exercise.name}</h3>
@@ -49,9 +67,15 @@ export default function Workout(){
                             return(
                                 <div className='grid-4-col margin-bottom-half' key={exercise.name + index}>
                                     <p>{index + 1}</p>
-                                    <input type="number" value={set.weight} onChange={handleInput}/>
-                                    <input type="number" value={set.reps} onChange={handleInput}/>
-                                    <button className='btn-complete'><i className="fa-solid fa-check"></i></button>
+                                    <input type="number"
+                                        value={set.weight}
+                                        onChange={(e) => handleInput(exerciseIndex, index, 'weight', e.target.value)}/>
+                                    <input type="number" 
+                                        value={set.reps} 
+                                        onChange={(e) => handleInput(exerciseIndex, index, 'reps', e.target.value)}/>
+                                    <button className='btn-complete' onClick={handleCompleted}>
+                                        <i className="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             )
                         })}

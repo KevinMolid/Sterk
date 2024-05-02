@@ -44,7 +44,7 @@ function App() {
   const [refreshWorkouts, setRefreshWorkouts] = useState(false)
 
   // Active workout
-  const [activeWorkout, setActiveWorkout] = useState({})
+  const [activeWorkout, setActiveWorkout] = useState(JSON.parse(localStorage.getItem('activeWorkout')))
 
   // Fetch user in firestore
   useEffect(() => {
